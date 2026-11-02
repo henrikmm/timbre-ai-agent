@@ -99,7 +99,7 @@ The original PDFs, support folder, database, reports, policy JSON, and detailed
 policy notes remain ignored. Generated raw copies, database, and policy JSON have
 owner-only `0600` permissions. The detailed notes also have `0600` permissions.
 
-This is a local tracked-file/history audit; no GitHub repository was published.
+The audit covers the local tracked tree and Git history.
 The public-files-only copy contained no originals, database, or derived policy
 JSON, and its synthetic tests and runnable examples succeeded.
 

@@ -2,6 +2,9 @@
 
 - Write engineering artifacts in English: identifiers, comments, docstrings, tests,
   README, architecture, technical explanations, notes, commits, and submissions.
+- Use Conventional Commits with concise imperative subjects, such as `feat:`,
+  `fix:`, `docs:`, `test:`, and `chore:`. Do not add assistant names, model names,
+  or assistant co-author trailers to commit messages.
 - Preserve original CSV values/columns and the original Portuguese policy document.
   Extracted policy headings and text stay Portuguese, with English metadata.
 - Future customer-facing interactions use natural Brazilian Portuguese (pt-BR).

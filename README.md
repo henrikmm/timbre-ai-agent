@@ -249,8 +249,10 @@ git log --all --name-only --format=
 git check-ignore Material_suporte data/store.db knowledge/policies.json knowledge/policy_notes.md .env
 ```
 
-No GitHub publication or submission email is performed in this phase. Review
-redistribution rights before publishing original or derived manual content.
+The public repository contains code, English documentation, and synthetic fixtures.
+Original materials and restricted derivatives stay local. Review redistribution
+rights before publishing original or derived manual content. Submission email is
+outside this phase.
 
 ## Limits and next steps
 
