@@ -18,6 +18,15 @@ class UnknownPolicyTopic(LookupError):
     """No policy matches the requested topic."""
 
 
+def _unique_object(pairs: list[tuple]) -> dict:
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise InvalidPolicyCatalog("duplicate JSON object key")
+        result[key] = value
+    return result
+
+
 def _require(condition: bool, description: str) -> None:
     if not condition:
         raise InvalidPolicyCatalog(description)
@@ -96,7 +105,7 @@ class PolicyCatalog:
     def __init__(self, path: str | Path):
         try:
             with Path(path).open(encoding="utf-8") as source:
-                catalog = json.load(source)
+                catalog = json.load(source, object_pairs_hook=_unique_object)
         except FileNotFoundError:
             raise PolicyFileMissing("policy catalog missing; run scripts/prepare_policies.py") from None
         except (OSError, UnicodeError, json.JSONDecodeError):
@@ -108,6 +117,10 @@ class PolicyCatalog:
     @property
     def document(self) -> dict:
         return deepcopy(self._catalog["document"])
+
+    @property
+    def section_count(self) -> int:
+        return len(self._catalog["policies"])
 
     def list_topics(self) -> list[str]:
         return sorted({record["topic"] for record in self._catalog["policies"]})

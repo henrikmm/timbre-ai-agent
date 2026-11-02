@@ -64,7 +64,7 @@ class OriginalSnapshotTests(unittest.TestCase):
 class OriginalPolicyTests(unittest.TestCase):
     def test_all_sections_and_cross_page_provenance(self):
         catalog = PolicyCatalog(os.environ["TIMBRE_POLICIES_PATH"])
-        self.assertEqual(len(catalog._catalog["policies"]), 29)
+        self.assertEqual(catalog.section_count, 29)
         self.assertEqual(len(catalog.get_store_policy("returns")), 5)
         self.assertEqual(catalog.get_store_policy("shipping.other_cities")[-1]["source"]["pages"], [4, 5])
         self.assertEqual(catalog.get_store_policy("privacy")[0]["source"]["pages"], [7, 8])

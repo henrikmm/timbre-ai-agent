@@ -132,6 +132,27 @@ class ImportTests(DatabaseTestCase):
             import_csvs(self.raw, path)
         self.assertFalse(path.exists())
 
+    def test_unrelated_database_is_not_rebuilt(self):
+        unrelated = self.directory / "unrelated.db"
+        with sqlite3.connect(unrelated) as connection:
+            connection.execute("CREATE TABLE unrelated (value TEXT)")
+            connection.execute("INSERT INTO unrelated VALUES ('synthetic retained value')")
+        with self.assertRaises(ImportValidationError):
+            import_csvs(self.raw, unrelated)
+        with sqlite3.connect(unrelated) as connection:
+            self.assertEqual(connection.execute("SELECT value FROM unrelated").fetchone()[0],
+                             "synthetic retained value")
+
+    def test_duplicate_headers_and_wrong_record_shapes_are_rejected(self):
+        path = self.raw / "customers.csv"
+        for contents in ["customer_id,name,phone,email,name\n1,A,,,B\n",
+                         "customer_id,name,phone,email,city\n1,A,,,City,unexpected\n",
+                         "customer_id,name,phone,email,city\n1,A\n"]:
+            with self.subTest(case=contents):
+                path.write_text(contents, encoding="utf-8")
+                with self.assertRaises(ImportValidationError):
+                    import_csvs(self.raw, self.database)
+
 
 class MoneyTests(DatabaseTestCase):
     def test_decimal_conversion_is_exact(self):

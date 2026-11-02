@@ -115,9 +115,11 @@ def extract_policy_catalog(pdf_path: str | Path) -> dict:
     if executable is None:
         raise PolicyPreparationError("pdftotext is required for preparation; install Poppler")
     try:
-        source_digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        result = subprocess.run([executable, "-layout", "-enc", "UTF-8", str(path), "-"],
-                                capture_output=True, check=True, timeout=30)
+        source_bytes = path.read_bytes()
+        source_digest = hashlib.sha256(source_bytes).hexdigest()
+        # Hash and extract the same byte snapshot even if the input path changes.
+        result = subprocess.run([executable, "-layout", "-enc", "UTF-8", "-", "-"],
+                                input=source_bytes, capture_output=True, check=True, timeout=30)
         pages = result.stdout.decode("utf-8").split("\f")
         if pages and not pages[-1].strip():
             pages.pop()

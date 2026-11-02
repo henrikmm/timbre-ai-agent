@@ -1,6 +1,7 @@
 """Report aggregate validation evidence without personal data or policy text."""
 
 import argparse
+from collections import defaultdict
 import json
 from pathlib import Path
 import sqlite3
@@ -27,10 +28,14 @@ def validate_snapshot(database: Path, policies: Path) -> dict:
         flagged = connection.execute("SELECT count(*) FROM promotions WHERE is_active = 1").fetchone()[0]
         eligible = connection.execute("""SELECT count(*) FROM promotions r JOIN products p USING (product_id)
                                         WHERE r.is_active = 1 AND p.status = 'active' AND p.stock_quantity > 0""").fetchone()[0]
-        differences = connection.execute("""SELECT count(*) FROM (
-            SELECT o.order_id FROM orders o JOIN order_items i USING (order_id)
-            JOIN products p USING (product_id) GROUP BY o.order_id
-            HAVING o.total_cents != SUM(i.quantity * p.price_cents))""").fetchone()[0]
+        # Python integers stay exact even if an aggregate exceeds SQLite's integer range.
+        current_totals = defaultdict(int)
+        for row in connection.execute("""SELECT i.order_id, i.quantity, p.price_cents
+                                         FROM order_items i JOIN products p USING (product_id)"""):
+            current_totals[row["order_id"]] += row["quantity"] * row["price_cents"]
+        differences = sum(row["total_cents"] != current_totals[row["order_id"]]
+                          for row in connection.execute("SELECT order_id, total_cents FROM orders")
+                          if row["order_id"] in current_totals)
         nulls = {column: connection.execute(f"SELECT count(*) FROM orders WHERE {column} IS NULL").fetchone()[0]
                  for column in ("tracking_code", "estimated_delivery", "notes")}
     catalog = PolicyCatalog(policies)
@@ -40,7 +45,7 @@ def validate_snapshot(database: Path, policies: Path) -> dict:
         "flagged_promotions": flagged, "sellable_promotions": eligible,
         "historical_totals_differing_from_current_catalog": differences,
         "order_null_counts": nulls,
-        "policy_sections": len(catalog._catalog["policies"]),
+        "policy_sections": catalog.section_count,
         "policy_pages": catalog.document["page_count"], "policy_topics": catalog.list_topics(),
     }
 

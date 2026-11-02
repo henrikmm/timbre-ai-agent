@@ -57,6 +57,15 @@ class PolicyTests(unittest.TestCase):
                 with self.assertRaises(InvalidPolicyCatalog):
                     PolicyCatalog(path)
 
+    def test_duplicate_json_keys_are_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "duplicate.json"
+            contents = self.path.read_text(encoding="utf-8")
+            path.write_text(contents.replace('"schema_version": 1,',
+                                            '"schema_version": 9, "schema_version": 1,'), encoding="utf-8")
+            with self.assertRaises(InvalidPolicyCatalog):
+                PolicyCatalog(path)
+
     def test_invalid_structure_source_and_hierarchy_are_rejected(self):
         base = json.loads(self.path.read_text())
         transforms = [
