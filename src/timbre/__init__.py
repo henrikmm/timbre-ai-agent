@@ -1,3 +1,3 @@
-"""Fundação do Timbre; sem integração conversacional nesta fase."""
+"""Timbre's foundation, independent of conversational integrations."""
 
 __version__ = "0.1.0"

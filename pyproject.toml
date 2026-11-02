@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "timbre-ai-agent"
 version = "0.1.0"
-description = "Fundação de dados, conhecimento e acesso controlado do Timbre"
+description = "Data, knowledge, and controlled-access foundation for Timbre"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
@@ -13,5 +13,3 @@ dependencies = []
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[tool.setuptools.package-data]
-"timbre.database" = ["*.sql"]

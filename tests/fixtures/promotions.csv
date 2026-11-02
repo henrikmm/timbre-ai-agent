@@ -1,0 +1,6 @@
+promotion_id,product_id,discount_percent,description,is_active
+1,101,10,Synthetic active campaign,1
+2,101,15,Synthetic inactive campaign,0
+3,102,25,Synthetic discontinued campaign,1
+4,104,30,Synthetic sold out campaign,1
+5,106,12.50,Synthetic fractional discount,1

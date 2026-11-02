@@ -1,15 +1,18 @@
 # Timbre
 
-Fundação em Python do futuro agente de atendimento da loja fictícia Empório da
-Música, no contexto do desafio AI Engineer da Artefact.
+Python foundation for the future customer service agent of the fictional store
+Empório da Música, developed for Artefact's AI Engineer challenge.
 
-A Fase 1 prepara dados SQLite, conhecimento por tópicos e acesso controlado.
-Agente, LLM, autenticação real e interface conversacional pertencem às próximas
-fases. Não há dependências Python de execução além da biblioteca padrão.
+Phase 1 prepares SQLite data, topic-based knowledge, and controlled access.
+The agent, LLM, real authentication, and conversational interface belong to later
+phases. There are no Python runtime dependencies outside the standard library.
 
-Os materiais recebidos, o banco e as políticas derivadas são locais e restritos.
-As fixtures públicas serão inteiramente sintéticas. Os originais devem ser
-fornecidos pelo avaliador para reproduzir a carga real.
+Supplied materials, the database, and derived policies are local and restricted.
+Public fixtures are entirely synthetic. Evaluators must supply the original files
+to reproduce the real snapshot.
 
-Implementação em andamento. As instruções de execução e validação acompanham
-os próximos commits.
+Engineering artifacts are in English. Original business data and extracted policy
+text remain in Portuguese. Future customer-facing interactions will use pt-BR.
+
+Implementation is in progress; setup and validation instructions follow in the
+next commits.

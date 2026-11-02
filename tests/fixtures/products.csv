@@ -1,0 +1,7 @@
+product_id,price_brl,name,category_id,description,stock_quantity,status,specs,created_at
+101,449.90,Violão de teste,1,Synthetic instrument,3,active,"{""strings"": ""6"", ""color"": ""Azul""}",2025-01-01
+102,300,Synthetic discontinued,1,Synthetic instrument,10,discontinued,{},2025-01-02
+103,600,Synthetic upcoming,1,,2,coming_soon,{},2025-01-03
+104,800,Synthetic sold out,2,Synthetic instrument,0,active,{},2025-01-04
+105,1200,Synthetic unknown status,2,Synthetic instrument,4,under_review,{},2025-01-05
+106,0.10,Synthetic tiny price,1,Synthetic instrument,1,active,,2025-01-06

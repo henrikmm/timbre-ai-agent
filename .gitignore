@@ -1,4 +1,4 @@
-# Materiais fornecidos e qualquer derivação restrita: uso apenas local.
+# Supplied materials and restricted derivatives are local only.
 /Material_suporte/
 /data/
 /local/
@@ -15,7 +15,7 @@
 *.sqlite3
 *.sqlite3-*
 
-# Segredos e configurações pessoais.
+# Secrets and personal configuration.
 .env
 .env.*
 !.env.example
@@ -24,7 +24,7 @@
 *credentials*.json
 *token*.json
 
-# Ambiente e saídas geradas.
+# Environments and generated output.
 .venv/
 venv/
 __pycache__/
