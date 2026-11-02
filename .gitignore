@@ -1,0 +1,40 @@
+# Materiais fornecidos e qualquer derivação restrita: uso apenas local.
+/Material_suporte/
+/data/
+/local/
+/knowledge/policies.json
+/knowledge/policy_notes.md
+/knowledge/*.txt
+*.pdf
+*.csv
+!tests/fixtures/*.csv
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+
+# Segredos e configurações pessoais.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*.json
+*token*.json
+
+# Ambiente e saídas geradas.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+output/
+tmp/
+.DS_Store
