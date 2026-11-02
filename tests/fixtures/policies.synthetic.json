@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "document": {
+    "name": "synthetic_manual.pdf",
+    "version": "test-1",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "page_count": 3,
+    "content_language": "pt-BR",
+    "extraction_method": "Hand-authored synthetic fixture; not the supplied manual"
+  },
+  "policies": [
+    {
+      "id": "synthetic_returns",
+      "topic": "returns",
+      "title": "Synthetic returns overview",
+      "parent_id": null,
+      "content": "Política fictícia de devoluções para testes; não representa a loja.",
+      "source": {"document": "synthetic_manual.pdf", "version": "test-1", "section": "1", "page": 1, "pages": [1], "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "related_topics": []
+    },
+    {
+      "id": "synthetic_returns_online",
+      "topic": "returns.online",
+      "title": "Synthetic online returns",
+      "parent_id": "synthetic_returns",
+      "content": "Exemplo fictício: preserve condições e exceções desta seção de teste.",
+      "source": {"document": "synthetic_manual.pdf", "version": "test-1", "section": "1.1", "page": 1, "pages": [1, 2], "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "related_topics": ["returns.exclusions"]
+    },
+    {
+      "id": "synthetic_returns_exclusions",
+      "topic": "returns.exclusions",
+      "title": "Synthetic exclusions",
+      "parent_id": "synthetic_returns",
+      "content": "Exceção inteiramente fictícia para validação de referências.",
+      "source": {"document": "synthetic_manual.pdf", "version": "test-1", "section": "1.2", "page": 2, "pages": [2], "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "related_topics": []
+    },
+    {
+      "id": "synthetic_payments",
+      "topic": "payments",
+      "title": "Synthetic payment information",
+      "parent_id": null,
+      "content": "Condições de pagamento fictícias, sem validade comercial.",
+      "source": {"document": "synthetic_manual.pdf", "version": "test-1", "section": "2", "page": 3, "pages": [3], "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "related_topics": []
+    }
+  ]
+}

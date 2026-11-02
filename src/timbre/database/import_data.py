@@ -145,11 +145,17 @@ def import_csvs(raw_dir: str | Path, database_path: str | Path) -> ImportReport:
     existed = destination.exists()
     try:
         with connect_database(destination, readonly=False) as connection:
+            destination.chmod(0o600)
             connection.execute("BEGIN IMMEDIATE")
             try:
                 version = connection.execute("PRAGMA user_version").fetchone()[0]
                 if version not in {0, SCHEMA_VERSION}:
                     raise ImportValidationError("unsupported database schema version; import refused")
+                existing_tables = {row[0] for row in connection.execute(
+                    "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%'"
+                )}
+                if existing_tables - set(TABLE_NAMES):
+                    raise ImportValidationError("database contains unrelated tables; import refused")
                 for table in reversed(TABLE_NAMES):
                     connection.execute(f"DROP TABLE IF EXISTS {table}")
                 for statement in SCHEMA_STATEMENTS:
@@ -171,9 +177,10 @@ def import_csvs(raw_dir: str | Path, database_path: str | Path) -> ImportReport:
             except BaseException:
                 connection.rollback()
                 raise
-        destination.chmod(0o600)
-    except (sqlite3.Error, OSError):
+    except (sqlite3.Error, OSError, ImportValidationError) as error:
         if not existed:
             destination.unlink(missing_ok=True)
+        if isinstance(error, ImportValidationError):
+            raise
         raise ImportValidationError("database import failed; no partial snapshot was committed") from None
     return ImportReport(counts, {table: parsed[table][1] for table in TABLE_NAMES})
