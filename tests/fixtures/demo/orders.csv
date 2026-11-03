@@ -1,0 +1,4 @@
+order_id,customer_id,order_date,status,total_brl,payment_method,tracking_code,estimated_delivery,notes
+5001,9001,2025-02-01,shipped,440.50,pix,SYNTHETIC-A,2025-02-10,Synthetic private remark A
+5002,9002,2025-02-02,delivered,300,credit_3x,SYNTHETIC-B,2025-02-12,Synthetic private remark B
+5003,9001,2025-02-03,pending,0.10,boleto,,,

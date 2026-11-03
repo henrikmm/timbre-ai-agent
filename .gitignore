@@ -12,6 +12,7 @@
 *.pdf
 *.csv
 !tests/fixtures/*.csv
+!tests/fixtures/demo/*.csv
 *.db
 *.db-*
 *.sqlite

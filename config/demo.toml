@@ -1,0 +1,48 @@
+# Synthetic public demonstration. No original assessment data is loaded.
+# Paths are relative to the repository root.
+[llm]
+default_mode = "standard"
+streaming = true
+timeout_seconds = 45
+# Reasoning and tool-call output share this per-model-call budget.
+max_output_tokens = 2048
+history_turn_limit = 12
+cross_model_fallback = true
+
+[tools]
+database_path = "data/demo/store.db"
+policies_path = "local/demo/policies.json"
+max_iterations = 4
+max_calls_per_turn = 12
+
+[llm.modes.standard]
+model = "deepseek/deepseek-v4.1-flash-1017"
+provider_sort = "default"
+# Omit optional reasoning controls until supported efforts are verified for this ID.
+reasoning_effort = "default"
+supported_reasoning_efforts = []
+
+[llm.modes.fast]
+model = "reflection/beam-1.0-501b-a23b"
+provider_sort = "latency"
+# Leave optional effort controls unset until validated for this model and route.
+reasoning_effort = "default"
+supported_reasoning_efforts = []
+
+[routing]
+allow_provider_fallbacks = true
+require_parameters = true
+data_collection = "deny"
+zdr = false
+
+[observability]
+enabled = true
+jsonl_path = "local/demo/requests.jsonl"
+record_tokens = true
+record_cost = true
+record_latency = true
+record_provider = true
+store_conversation_content = false
+# At most one lookup after streaming, only if provider or cost is missing.
+generation_metadata = "missing"
+metadata_timeout_seconds = 2

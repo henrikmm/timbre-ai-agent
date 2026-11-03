@@ -8,6 +8,7 @@ import streamlit as st
 from timbre.config import ConfigurationError
 from timbre.presentation import response_error
 from timbre.web import create_session
+from timbre.knowledge.policy_loader import PolicyCatalog, PolicyFileMissing, InvalidPolicyCatalog
 
 
 CSS = """
@@ -213,6 +214,11 @@ def main():
     if developer:
         st.caption(f"Developer workspace · Requested model: {conversation.config.modes[conversation.mode].model}")
     st.divider()
+    try:
+        if PolicyCatalog(conversation.config.tools.policies_path).document["name"].startswith("synthetic"):
+            st.caption("Synthetic portfolio demo · fictional products and policies")
+    except (PolicyFileMissing, InvalidPolicyCatalog):
+        pass
     if not session.turns and session.pending is None:
         st.markdown("### Find your next sound.")
         st.write("Ask about instruments, availability, payment options, or store policies.")

@@ -57,11 +57,11 @@ class ImportTests(DatabaseTestCase):
 
     def test_idempotence_and_source_bytes_unchanged(self):
         before = self.snapshot()
-        hashes = {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in self.raw.iterdir()}
+        hashes = {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in self.raw.iterdir() if path.is_file()}
         repeated = import_csvs(self.raw, self.database)
         self.assertEqual(self.report, repeated)
         self.assertEqual(before, self.snapshot())
-        self.assertEqual(hashes, {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in self.raw.iterdir()})
+        self.assertEqual(hashes, {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in self.raw.iterdir() if path.is_file()})
 
     def test_late_foreign_key_failure_rolls_back_entire_snapshot(self):
         before = self.snapshot()

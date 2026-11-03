@@ -1,0 +1,7 @@
+product_id,price_brl,name,category_id,description,stock_quantity,status,specs,created_at
+101,449.90,Demo Cedar Acoustic,1,Entirely synthetic portfolio instrument; not assessment data,3,active,"{""strings"": ""6"", ""color"": ""Azul""}",2025-01-01
+102,300,Demo Vintage Acoustic,1,Entirely synthetic portfolio instrument; not assessment data,10,discontinued,{},2025-01-02
+103,600,Demo Future Acoustic,1,Entirely synthetic portfolio instrument; not assessment data,2,coming_soon,{},2025-01-03
+104,800,Demo Stage Keyboard,2,Entirely synthetic portfolio instrument; not assessment data,0,active,{},2025-01-04
+105,1200,Demo Review Keyboard,2,Entirely synthetic portfolio instrument; not assessment data,4,under_review,{},2025-01-05
+106,649.90,Demo Spruce Acoustic,1,Entirely synthetic portfolio instrument; not assessment data,1,active,"{""strings"":""6"",""top"":""Synthetic spruce""}",2025-01-06

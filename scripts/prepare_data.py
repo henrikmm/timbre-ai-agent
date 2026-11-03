@@ -23,10 +23,12 @@ def prepare_sources(source_dir: Path, raw_dir: Path) -> dict[str, str]:
         candidates[name] = matches[0]
     # Locate everything first, so an incomplete input set is never silently accepted.
     snapshots = {name: path.read_bytes() for name, path in candidates.items()}
+    source_paths = {path.resolve() for path in candidates.values()}
+    # Preflight the entire destination set before writing even one byte.
+    if any((raw_dir / name).resolve() in source_paths for name in snapshots):
+        raise ValueError("source and raw directories must be different")
     for name, contents in snapshots.items():
         destination = raw_dir / name
-        if destination.resolve() == candidates[name].resolve():
-            raise ValueError("source and raw directories must be different")
         write_private(destination, contents)
     return {name: hashlib.sha256(contents).hexdigest() for name, contents in snapshots.items()}
 

@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "document": {
+    "name": "synthetic-demo-policy",
+    "version": "demo-1",
+    "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+    "page_count": 1,
+    "content_language": "pt-BR",
+    "extraction_method": "Hand-authored synthetic demonstration; no original policy text or PDF"
+  },
+  "policies": [
+    {
+      "id": "demo_store",
+      "topic": "store",
+      "title": "Loja fictícia",
+      "content": "Demonstração inteiramente sintética. A loja vende instrumentos musicais; não vende amplificadores ou acessórios.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "1",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_store_contacts",
+      "topic": "store.contacts",
+      "title": "Endereço fictício",
+      "content": "Endereço fictício: Rua do Exemplo, 100, Cidade Fictícia, MS. Contato: suporte@demo.invalid.",
+      "parent_id": "demo_store",
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "2",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_hours",
+      "topic": "hours",
+      "title": "Horários fictícios",
+      "content": "Horário fictício: segunda a sexta, das 10h às 18h.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "3",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_payments",
+      "topic": "payments",
+      "title": "Pagamentos fictícios",
+      "content": "Condições fictícias sem validade comercial. PIX Pagamento à vista 7% de desconto. Cartão de Crédito Até 9x sem juros Parcela mínima de R$ 90,00. Cartão de Débito e Boleto Bancário disponíveis.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "4",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_payments_installments",
+      "topic": "payments.installments",
+      "title": "Parcelamento fictício",
+      "content": "Parcelamento em até 2x: sem juros, parcela mínima de R$ 30,00. Parcelamento de 3x a 5x: sem juros, parcela mínima de R$ 60,00. Parcelamento de 6x a 9x: sem juros, parcela mínima de R$ 90,00.",
+      "parent_id": "demo_payments",
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "5",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_promotions",
+      "topic": "promotions",
+      "title": "Ofertas fictícias",
+      "content": "Apenas campanhas ativas e produtos disponíveis participam desta demonstração.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "6",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_promotions_rules",
+      "topic": "promotions.rules",
+      "title": "Regras fictícias",
+      "content": "As promoções não são cumulativas. O desconto PIX não se aplica sobre valores já promocionais.",
+      "parent_id": "demo_promotions",
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "7",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_returns",
+      "topic": "returns",
+      "title": "Devoluções fictícias",
+      "content": "Regras inventadas exclusivamente para demonstração; a ferramenta não processa reembolsos.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "8",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_returns_online",
+      "topic": "returns.online",
+      "title": "Desistência fictícia",
+      "content": "Para compras online neste cenário fictício, solicite a devolução até 7 dias após o recebimento, com o instrumento sem sinais de uso e a embalagem original. O atendimento orienta o envio e o reembolso; nenhum reembolso é executado pelo assistente.",
+      "parent_id": "demo_returns",
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "9",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_returns_defects",
+      "topic": "returns.defects",
+      "title": "Defeitos fictícios",
+      "content": "Para defeitos, contate o atendimento para avaliação; não há aprovação automática.",
+      "parent_id": "demo_returns",
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "10",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_returns_preference",
+      "topic": "returns.preference",
+      "title": "Troca fictícia",
+      "content": "Trocas por preferência: solicite em até 10 dias do recebimento, com embalagem e sem uso.",
+      "parent_id": "demo_returns",
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "11",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_returns_exclusions",
+      "topic": "returns.exclusions",
+      "title": "Exclusões fictícias",
+      "content": "Na troca por preferência, itens personalizados são excluídos; desistência online e defeitos têm análise própria.",
+      "parent_id": "demo_returns",
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "12",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_shipping",
+      "topic": "shipping",
+      "title": "Entrega fictícia",
+      "content": "Consulte o atendimento com seu destino para cotação; o assistente não consulta transportadoras.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "13",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_privacy",
+      "topic": "privacy",
+      "title": "Privacidade fictícia",
+      "content": "Contatos e histórico de outros clientes não são divulgados. A consulta de pedido exige autenticação de backend.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "14",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_whatsapp",
+      "topic": "whatsapp",
+      "title": "Atendimento fictício",
+      "content": "Para apoio humano neste cenário, escreva para suporte@demo.invalid.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "15",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_warranty",
+      "topic": "warranty",
+      "title": "Garantia fictícia",
+      "content": "Consulte o atendimento com os dados do instrumento; o assistente não aprova garantias.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "16",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_store_overview",
+      "topic": "store.overview",
+      "title": "Catálogo fictício",
+      "content": "Neste cenário fictício vendemos apenas instrumentos musicais. Não vendemos amplificadores ou acessórios. Explore os violões e teclados sintéticos.",
+      "parent_id": "demo_store",
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "17",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "demo_escalation",
+      "topic": "escalation",
+      "title": "Próximos passos fictícios",
+      "content": "Para apoio humano fictício, escreva para suporte@demo.invalid. O assistente orienta, mas não registra reclamações nem transfere atendimentos.",
+      "parent_id": null,
+      "related_topics": [],
+      "source": {
+        "document": "synthetic-demo-policy",
+        "version": "demo-1",
+        "sha256": "c766f53f893d054cb0dca0eb0c2cefb7db2bf31bfa730bdcb07b5086b68fcab0",
+        "section": "18",
+        "page": 1,
+        "pages": [
+          1
+        ]
+      }
+    }
+  ]
+}

@@ -1,190 +1,222 @@
-# Architecture and security boundaries
+# Architecture and engineering decisions
 
-SQLite provides relational integrity and exact integer storage. JSON provides
-transparent policy records with source references. The Phase 1 runtime and tests
-use Python's standard library; local Poppler is needed only for PDF preparation/
-verification. Phase 2 adds the official OpenRouter SDK and a dotenv reader, with
-no agent framework. The operational data layer remains separate from the LLM.
+Timbre is a local conversational support application for a fictional instrument
+retailer. The CLI and Streamlit interface share one synchronous conversation engine,
+one tool registry, one SQLite schema and one policy format. The original version was
+developed for Artefact's AI Engineer technical assessment.
 
-## Phase 3A conversational flow
-
-```mermaid
-flowchart LR
-    CLI[Existing terminal CLI] --> Conversation[Bounded transactional tool loop]
-    Config[TOML and compact system prompt] --> Conversation
-    Conversation --> Adapter[Normalized events / official OpenRouter SDK]
-    Adapter --> External[OpenRouter and external inference providers]
-    Conversation --> Executor[Allowlisted registry and executor]
-    Executor --> Catalog[Public catalog repository]
-    Executor --> Policies[Validated policy retrieval]
-    Executor --> Orders[Owner-filtered order status]
-    Auth[Trusted backend session context] --> Orders
-    Conversation --> Observer[Existing observer: turn metrics and typed events]
-    Executor --> Observer
-    Observer --> JSONL[Ignored private metrics and trace JSONL]
-    Observer --> Consumer[CLI debug / future trace visualization]
-```
-
-`config.py` validates the provider settings plus `[tools]` paths and execution
-budgets. `llm/openrouter.py` isolates SDK serialization, routing, stream/tool-delta
-normalization, safe errors, and optional bounded generation metadata.
-`conversation.py` owns session state, complete call reconstruction, matching
-assistant/tool messages, iteration limits, and final answer streaming. The executor
-validates names and arguments and dispatches only controlled Python implementations.
-
-Each interaction builds pending context from complete earlier turns. Tool requests
-must finish normally with a tool-call finish reason before execution. Tool results
-carry the matching protocol ID, including when the model requests multiple calls.
-A successful final response commits the entire user/tool/assistant exchange. Errors,
-truncation, incomplete tool streams, and interruption leave previous history intact.
-Trimming removes complete oldest turns rather than orphaning tool messages. Mode
-switching preserves context, reset preserves system instructions, and conversation
-instances do not share session state. Concurrent use of one conversation object
-is unsupported.
-
-The compact prompt contains tool-use and security instructions rather than a copy
-of the database or manual. Retrieved content is data, never an instruction that
-can change authorization or system priority. The model interprets customer intent
-and phrases answers; Python enforces data access, money rules, and private ownership.
-
-`observability.py` extends the Phase 2 observer with typed events and aggregate
-turn measurements. `cli.py` reads those same events for `/trace` and optional debug
-output. Neither tracing nor debugging changes tool permissions. SDK objects and
-hidden reasoning are not exposed through the presentation callback or telemetry.
-
-See [ADR-006](decisions/006-function-calling-architecture.md),
-[ADR-007](decisions/007-tool-design-business-rules.md),
-[ADR-008](decisions/008-execution-tracing.md), and the
-[Phase 3A operation and validation record](phase3a.md).
-
-## Responsibilities
-
-| Component | Responsibility | Intended caller |
-|---|---|---|
-| `scripts/prepare_data.py` | Locate the full delivery and copy unchanged local bytes | Developer / evaluator |
-| `database/import_data.py` | Validate and atomically rebuild six tables | Trusted maintenance code |
-| `database/schema.py`, `values.py` | Constraints and exact numeric representations | Internal data layer |
-| `database/connection.py` | Short-lived connections, read-only for queries | Internal data layer |
-| `CatalogRepository` | Public catalog/category/promotion projections | Public business tools |
-| `OrderRepository` | Verify identity, enforce ownership, return minimal status | Restricted order tool |
-| `authorization.py` | Provider protocol and deny-all default | Trusted backend composition |
-| `knowledge/extraction.py` | Reviewed local extraction and provenance | Preparation script |
-| `PolicyCatalog` | Validate JSON and retrieve complete topics | Policy tool |
-| `scripts/validate_snapshot.py` | Aggregate evidence without personal data | Developer / evaluator |
-| `tests/support.py` | Synthetic data and isolated session simulation | Tests only |
-
-## Data flow
+## Request lifecycle
 
 ```mermaid
 flowchart LR
-    CSV[Local original CSVs] --> Import[Validated transactional import]
-    Import --> DB[(Restricted SQLite snapshot)]
-    PDF[Local original manual] --> Extract[Local section extraction]
-    Extract --> JSON[Restricted policy JSON]
-    DB --> Catalog[Public catalog repository]
-    DB --> Orders[Private order repository]
-    Auth[Trusted backend authorizer] --> Orders
-    JSON --> Policies[Validated topic retrieval]
+    Customer --> UI[CLI or Streamlit]
+    UI --> Engine[Transactional conversation]
+    Engine --> Router[OpenRouter SDK]
+    Router --> Model[Configured model]
+    Model --> Executor[Allowlisted tool executor]
+    Executor --> Catalog[(SQLite)]
+    Executor --> Policies[Structured Portuguese policies]
+    Executor --> Rules[Exact payment calculations]
+    Executor --> Model
+    Model --> Answer[Streamed answer]
+    Engine --> Observer[Sanitized events and metrics]
 ```
 
-Only preparation/import writes data. Queries do not place orders, reserve products,
-recalculate stock, or process money.
+The model proposes calls; Python validates and executes them. It cannot submit SQL,
+choose a filesystem path, run code, authenticate a customer, or mutate business data.
+A turn has at most four tool iterations, five model calls and twelve tool calls by
+default. A 45-second turn deadline bounds generation and follow-up requests; metadata
+lookups have their own two-second timeout per generation. There are no automatic
+application retries. Provider failover and cross-model fallback are separate settings.
 
-## Information classification
+The engine assembles indexed streaming tool deltas, requires a complete terminal
+`tool_calls` response, validates the entire call and associates each result with its
+call ID. A nonempty final `stop` response commits the whole turn. A truncated,
+interrupted, empty or failed attempt preserves the previous history. At most twelve
+complete turns are retained in process memory; no conversation persistence is implied.
+Reasoning may need to travel in the provider protocol but is never shown or logged.
 
-| Classification | Examples | Interface |
+## One schema, two loading workflows
+
+| Workflow | Inputs | Generated destinations | Configuration |
+|---|---|---|---|
+| Public portfolio | Explicitly synthetic CSVs and hand-authored policy JSON in `tests/fixtures/demo/` | `data/demo/store.db`, `local/demo/policies.json` | `config/demo.toml` |
+| Original assessment | Six original CSVs, policy PDF and assessment PDF in ignored `Material_suporte/` | `data/raw/`, `data/store.db`, `knowledge/policies.json` | Packaged default TOML |
+
+`prepare_demo.py` calls the same `import_csvs` used by `import_data.py`; it does not
+simulate a model or return canned answers. The small public fixture retains the
+existing test IDs and schemas, with coherent fictional product names, two available
+acoustic instruments, unavailable/status edge cases and active/inactive promotions.
+Its monetary terms and contacts are invented, distinct from the supplied business
+materials. The web page labels this dataset explicitly. Switching configuration
+changes input paths and telemetry destinations, not the application's business logic.
+Do not combine a database from one dataset with policies from the other.
+
+`prepare_data.py` recursively locates the complete original filename set, including
+Unicode-normalized accent matching. Missing or duplicate files fail before copying.
+It copies unchanged bytes into the ignored raw directory, preflights source/destination
+overlap and never edits the package. The assessment PDF is retained as a local source;
+it is not used as the store policy. SHA-256 import reports identify exact source CSV
+bytes. Policy provenance separately identifies the PDF bytes.
+
+The importer accepts either `<table>.csv` or `desafio_tecnico_ai_eng - <table>.csv`
+for each table, and rejects ambiguous pairs. Headers must have exactly the required
+column names; order may vary. UTF-8/BOM, quoted commas, JSON objects, ISO dates,
+nullable empty fields, integer bounds, unique/composite keys and foreign keys are
+validated. Replacement is atomic and idempotent. Failed imports retain the previous
+snapshot and refuse unrelated databases. Error messages identify table/field/record
+locations without echoing personal values.
+
+SQLite stores money as integer cents and discounts as basis points. Conversion is
+exact, never binary float rounding. Text, JSON strings and historical totals retain
+the source values. Original files/columns remain unchanged; only the destination
+representation changes.
+
+| Table | Key and relationships |
+|---|---|
+| `categories` | `category_id` primary key |
+| `products` | `product_id`; category FK; price/stock/status/specifications |
+| `customers` | `customer_id`; private contact fields |
+| `orders` | `order_id`; customer FK; historical total/status/delivery |
+| `order_items` | Composite `(order_id, product_id)`; order/product FKs |
+| `promotions` | `promotion_id`; product FK; discount and active flag |
+
+Read connections use SQLite read-only mode. Public catalog queries are parameterized,
+escape LIKE wildcards and return bounded results. English category aliases map to
+Portuguese category names without changing stored values. Brand matching uses name
+tokens because no independent brand column exists. Availability requires both
+`active` status and positive stock. Historical order totals are not recomputed from
+today's catalog prices.
+
+## Policy retrieval and service decisions
+
+The original version 2.1 manual is extracted with Poppler, not sent wholesale in the
+prompt. Twenty-nine sections retain Portuguese content, page spans, document hash,
+version, hierarchy and related topics. The loader validates the complete catalog,
+rejects cycles/invalid provenance and returns copies. Retrieval matches a topic and
+its descendants, retains parent introductions and optionally includes related clauses.
+A new manual version requires review of the section map and rule parsing. Synthetic
+policies satisfy the same structural contract without needing Poppler or an invented PDF.
+
+A structured catalog is sufficient for this small, known document. Embeddings, a
+vector database or an agent framework would add operational and evaluation costs
+without improving this version's explicit topic interface.
+
+Source discrepancies are resolved in a separate service projection; originals are
+never repaired silently. These are project demonstration decisions, requiring actual
+business approval before production:
+
+| Issue | Adopted behavior |
+|---|---|
+| Different contact spellings/numbers | Return all requested alternatives, deduplicated and unchanged; no assertion of deliverability |
+| Summary versus detailed installment minimums | Detailed tiers take precedence; check the smallest cent-allocated installment |
+| Local free-shipping equality gap | Include equality at the source-derived free-shipping threshold |
+| Preference exchange start event | Count from receipt |
+| Broad exchange exclusions | Apply to discretionary preference exchanges; online withdrawal/defects retain their own clauses |
+| Campaigns without validity/audience fields | Active flags define this snapshot's demonstration offers; infer no expiry |
+| Competing PIX/campaign discounts | Choose the lowest single eligible offer, stable ID tie-break; never compound discounts |
+| Conflicting product prose | Name determines identity; structured specifications determine technical attributes |
+| Historical totals differ from current prices | Preserve recorded totals and report the aggregate discrepancy without inventing a cause |
+| Mixed payment or unsupported actions | Explain sourced conditions and supported next steps; no charge, reservation, refund or transfer is performed |
+
+## Tool boundary
+
+| Tool | Responsibility |
+|---|---|
+| `search_products` | Catalog filters and available-product recommendations |
+| `get_product_details` | Verified price, stock, status and specifications by ID |
+| `get_store_policy` | Source-linked sections and resolved service terms |
+| `get_active_promotions` | Active offers on sellable products, independently calculated |
+| `calculate_payment_options` | Decimal PIX, campaign and installment calculations from a trusted product ID |
+| `get_my_order_status` | Minimal historical order projection for a backend-verified owner |
+
+The allowlist rejects unknown tools/fields, duplicate JSON keys, malformed arguments,
+null optional values, boolean IDs and invalid ranges. Outcomes distinguish success,
+empty, invalid arguments, authorization denial and backend failure. Tool text and
+customer input are untrusted data; they never change the allowlist or privileges.
+Payment calculations derive their terms from the policy catalog and fail closed
+when its reviewed structure cannot be parsed. Installment cents sum exactly to the
+quoted price. A calculation is not checkout or a confirmed live commercial quote.
+
+## Models and inference
+
+| Mode | Current model | Routing |
 |---|---|---|
-| Public business information | Catalog, prices, specifications, availability, eligible campaigns | `CatalogRepository` |
-| Knowledge for service | Hours, commercial terms, service guidance | Local `PolicyCatalog`; allowlisted tool retrieves relevant sections |
-| Restricted identities | Customer names, phones, emails, cities | No conversational customer-list interface |
-| Restricted operations | Individual orders, tracking, free-text notes | Owner-checked status/history projections only |
-| Restricted artifacts | Full delivery, internal manual, derived JSON, database, detailed notes | Ignored local files |
+| Standard | `deepseek/deepseek-v4.1-flash-1017` | Default provider balance |
+| Fast | `reflection/beam-1.0-501b-a23b` | Latency priority |
 
-Some manual information may be suitable for a customer answer while the complete
-document remains internal. Answering a policy question does not authorize full
-republication of its source.
+Both use the pinned official OpenRouter SDK, tool schemas, streaming and a default
+2,048-token output budget per model call. The budget includes reasoning and tool
+output; a previous 512-token setting caused truncation. Optional sampling/reasoning
+controls are omitted unless verified for the configured model and route.
 
-## Authorization contract
+GPT-OSS was an earlier Fast model. The implemented configuration replaced it after
+observed language, certainty and latency problems. This consolidation preserves that
+accepted choice rather than silently reverting it to match an older brief. The
+formal comparison uses the current modes and reports actual models/providers.
+It does not establish a new GPT-OSS comparison or a universal model ranking.
 
-Trusted backend code injects an authorizer when constructing `OrderRepository`.
-The default `DenyAllAuthorizer` rejects every private request **before** opening
-the database. The requested order ID and opaque session context are separate.
+[OpenRouter's model catalog](https://openrouter.ai/models) describes the hosted
+models. Open weights can enable alternative hosting, but this implementation calls
+external inference providers and is not local inference. Weight availability does
+not remove model-license, hosting, privacy, infrastructure or service-availability
+requirements. Routing requires tool-parameter support and requests
+`data_collection=deny`; this preference is not a legal compliance guarantee.
+[Provider routing](https://openrouter.ai/docs/guides/routing/provider-selection)
+can change availability, latency and price. All model claims are bounded by the
+observed runs in [evaluation](evaluation.md).
 
-A future `require_customer_id(context)` provider must verify an application-issued
-session before returning an integer identity. It must not trust a name, phone,
-order number, dictionary field, or model-supplied customer identifier. No production
-session issuer, login, OAuth, OTP, or environment bypass exists in Phase 3A.
+## Authorization and privacy
 
-After verification, the query filters by **both** order ID and verified customer ID.
-Nonexistent and other-customer orders produce the same `OrderNotFound` response.
-`get_my_orders()` also filters by the verified owner with bounded pagination.
-Neither method accepts a customer override.
+Public CLI and web sessions use `DenyAllAuthorizer`. Names, phones, emails, IDs,
+Developer view and claimed identity never authenticate anyone. Authorization runs
+before opening private data. A trusted backend may inject an opaque verified context;
+owner reads filter by both order and verified customer ID. Other-owner and nonexistent
+orders have the same unavailable outcome. No customer-directory tool exists.
+Test-only identity issuance stays exclusively in `tests/support.py` and integration
+tests. There is no impersonation control in either interface.
 
-Private results contain only `order_id`, `order_date`, `status`, `tracking_code`,
-and `estimated_delivery`. They do not join customer records or include names,
-phones, email, city, notes, payment details, or customer IDs.
+Original CSV/PDF files, extracted policies, databases, detailed reports, logs and keys
+are ignored and owner-only where generated. Public examples use synthetic inputs.
+External inference sees bounded customer context and relevant tool results; production
+would still require lawful-purpose review, processor contracts, international-transfer
+review, retention/deletion controls, real authentication and abuse protection. This
+prototype does not claim LGPD certification. Local file possession is a trusted
+operator boundary, not an application permission system.
 
-The test-only issuer binds opaque object identities to synthetic customer IDs in
-an isolated registry. Fabricated objects and claimed fields fail. Tests explicitly
-inject that issuer; it is not imported by production code or public examples.
+## Presentation and observability
 
-## Evidence limits
+Streamlit owns only display records and one session-scoped `Conversation`. Queued
+input is consumed before execution, preventing rerender resubmission. Model switching
+preserves context; **New chat** clears visible/backend history and retains session
+metrics. Failed partial text is labeled incomplete; retry requires a separate explicit
+submission. BRL markers are escaped for Markdown display only.
 
-Tests establish ownership and projection behavior under a trusted-backend threat
-model. They do not establish real authentication, network security, isolation, or
-protection against a malicious trusted provider. Anyone able to execute arbitrary
-backend Python, inject an authorizer at startup, or open the SQLite file can bypass
-these interfaces. The database itself does not enforce customer ownership.
+`TIMBRE_WEB_VIEW=developer` is selected by the server at startup, never by URL or
+customer input. Its progressive activity panel and detailed timeline use the same
+sanitized `TraceEvent` objects as the CLI `/trace`. It has no additional business
+authority. Both presentations bind to loopback and have no production login.
 
-Read-only connections prevent accidental writes; they do not provide row-level
-confidentiality. File protection, trusted backend composition, allowlisted tools,
-and real identity verification are application responsibilities.
+One existing `Observer` records a schema-version-2 metrics row per interaction and
+correlated request/tool events in a sibling traces JSONL. No second telemetry system
+is added by evaluation. Logs contain safe tool names, redacted free-text/private IDs,
+logical sources, counts, statuses, timings and anonymous correlations; no prompts,
+answers, rows, raw errors, keys or hidden reasoning. Evaluation explicitly saves
+separate private transcripts to enable manual review; these are never public logs.
 
-## Tool integration and financial rules
+Metrics aggregate usage once per model call. `overall_latency_seconds` includes
+metadata lookup; `total_latency_seconds` measures answer availability. Tool durations
+and nested spans overlap and must not be added to customer wait time. Missing token,
+cost or provider fields remain unavailable, with coverage counts and observed cost
+subtotals. Metadata lookups occur at most once per generation, without retries.
+In-memory traces are bounded to 2,000 events. Persistent log rotation/retention is
+still a production requirement.
 
-The registry exposes product search/details, flagged snapshot promotions, relevant
-policy topics, deterministic payment options, and private order status. It does
-not expose generic tables, SQL, customer listing, filesystem access, code execution,
-or mutations. The order schema accepts an order ID; identity is bound separately
-by trusted backend code. Unknown tools, invalid arguments, no results, backend
-failure, and authorization denial produce distinct structured outcomes.
+## Boundaries and next steps
 
-Sale availability requires exact `active` status and positive stock. Category
-aliases bridge English requests to source-language values. Brand matching uses
-product-name evidence because the source schema lacks a dedicated brand column.
-Structured specifications remain source values rather than inferred repairs.
-
-Financial calculations derive product prices from SQLite and reviewed rules from
-the local policy catalog. Decimal values serialize as strings; discount stacking
-is prevented. The detailed installment schedule, lowest non-stacked PIX option,
-active-offer flags, contact alternatives, and inclusive local freight threshold are
-adopted demonstration decisions. A source-derived resolved projection accompanies
-raw policy evidence without changing it; see ADR-010. Original source limitations
-remain in engineering material rather than repetitive customer disclaimers. Calculators do not authorize payment, a
-reservation, a policy exception, or a transaction. Historical order tracking is
-snapshot information, not a live carrier query.
-
-## Language and evaluation
-
-Engineering identifiers, comments, docstrings, configuration keys, tests, notes,
-commits, technical reports, and submission explanations use English. Original
-filenames, CSV values, and extracted policy headings/bodies retain Portuguese;
-English metadata surrounds the source content.
-
-Phase 3B keeps all static CLI/web labels in English and uses the shared system
-prompt to follow the customer's language or explicit preference. Portuguese source
-policy text and CSV values remain unchanged. Scenario titles, expected behavior,
-technical annotations, and translations use English. Synthetic tests and bounded
-live smoke findings are labeled separately; neither constitutes the Phase 4
-formal evaluation suite.
-
-## Deliberate exclusions
-
-No LangChain/LangGraph, embeddings, vector store, separate API server, channel
-integration, production authentication system, commercial transaction processing,
-or administrative system is added. Conversation history remains in memory only.
-Phase 3B's local Streamlit UI calls the existing conversation engine directly.
-Its per-session display records never supply model history; only the backend owns
-committed tool-call groups. Views do not change authorization. See
-[ADR-009](decisions/009-streamlit-presentation.md). Phase 4 systematic evaluation
-remains future work.
+The snapshot is static; no ERP, carrier, checkout or production identity integration
+exists. Synchronous per-session execution favors a reviewable local prototype over
+concurrent serving. Language and helpfulness remain probabilistic, and policy parsing
+is version-specific. Production work would prioritize approved business rules, real
+authentication, refreshed source data, deployment controls and repeated task-level
+monitoring before adding more tools or infrastructure.

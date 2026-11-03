@@ -1,0 +1,5778 @@
+{
+  "verified_date": "2026-11-03",
+  "evidence_note": "Actual executions only. No synthetic model-performance measurements. Restricted transcripts and source values are excluded.",
+  "runs": [
+    {
+      "id": "phase4-final-language-multitool",
+      "source": "live_openrouter",
+      "dataset": "original",
+      "created_at": "2026-11-03T18:50:32.339192+00:00",
+      "system_prompt_sha256": "96625588587ff8a64222cc089d4f706ae2833b85ec54b0d400cc36c7760e00e9",
+      "model_calls": 3,
+      "observed_cost_usd": 0.0045326,
+      "model_metrics": {
+        "fast": {
+          "requests": 1,
+          "successful_requests": 1,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 5.550090708013158,
+          "p95_ttft_seconds": 5.550090708013158,
+          "ttft_samples": 1,
+          "median_total_latency_seconds": 6.188524333003443,
+          "p95_total_latency_seconds": 6.188524333003443,
+          "latency_samples": 1,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.0045326,
+          "mean_cost_usd": 0.0045326,
+          "cost_known_requests": 1,
+          "providers": [
+            "Nebius"
+          ],
+          "actual_models": [
+            "reflection/beam-1.0-501b-a23b"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 3,
+          "tool_calls": 6,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.0045326,
+          "cost_known_model_calls": 3,
+          "input_tokens": 13948,
+          "input_tokens_known_requests": 1,
+          "output_tokens": 2108,
+          "output_tokens_known_requests": 1,
+          "total_tokens": 16056,
+          "total_tokens_known_requests": 1,
+          "reasoning_tokens": 1528,
+          "reasoning_tokens_known_requests": 1,
+          "cached_tokens": 5312,
+          "cached_tokens_known_requests": 1,
+          "median_end_to_end_seconds": 6.188617250008974,
+          "p95_end_to_end_seconds": 6.188617250008974,
+          "end_to_end_samples": 1,
+          "deterministic_trial_passes": 1,
+          "trials": 1
+        }
+      },
+      "scenarios": [
+        {
+          "id": "E10",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 6,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 6,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 6,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 6,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 6,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 6,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_product_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 24,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 24,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        }
+      ]
+    },
+    {
+      "id": "phase4-language-security-regression",
+      "source": "live_openrouter",
+      "dataset": "original",
+      "created_at": "2026-11-03T18:47:43.419383+00:00",
+      "system_prompt_sha256": "96625588587ff8a64222cc089d4f706ae2833b85ec54b0d400cc36c7760e00e9",
+      "model_calls": 25,
+      "observed_cost_usd": 0.01078368995,
+      "model_metrics": {
+        "standard": {
+          "requests": 6,
+          "successful_requests": 6,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 2.7401691664999817,
+          "p95_ttft_seconds": 14.26200269824767,
+          "ttft_samples": 6,
+          "median_total_latency_seconds": 3.012266958496184,
+          "p95_total_latency_seconds": 15.826882323010068,
+          "latency_samples": 6,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.0038177899500000004,
+          "mean_cost_usd": 0.000636298325,
+          "cost_known_requests": 6,
+          "providers": [
+            "Baidu",
+            "InferenceNet",
+            "OpenInference",
+            "Relace",
+            "Wafer"
+          ],
+          "actual_models": [
+            "deepseek/deepseek-v4.1-flash-1017"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 12,
+          "tool_calls": 11,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.0038177899500000004,
+          "cost_known_model_calls": 12,
+          "input_tokens": 42334,
+          "input_tokens_known_requests": 6,
+          "output_tokens": 3343,
+          "output_tokens_known_requests": 6,
+          "total_tokens": 45677,
+          "total_tokens_known_requests": 6,
+          "reasoning_tokens": 1844,
+          "reasoning_tokens_known_requests": 6,
+          "cached_tokens": 19456,
+          "cached_tokens_known_requests": 6,
+          "median_end_to_end_seconds": 3.012314207997406,
+          "p95_end_to_end_seconds": 15.826983521263173,
+          "end_to_end_samples": 6,
+          "deterministic_trial_passes": 6,
+          "trials": 6
+        },
+        "fast": {
+          "requests": 6,
+          "successful_requests": 6,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 2.2507992915052455,
+          "p95_ttft_seconds": 4.670077291746566,
+          "ttft_samples": 6,
+          "median_total_latency_seconds": 2.3956822710024426,
+          "p95_total_latency_seconds": 4.945153916749405,
+          "latency_samples": 6,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.0069659,
+          "mean_cost_usd": 0.0011609833333333334,
+          "cost_known_requests": 6,
+          "providers": [
+            "Nebius"
+          ],
+          "actual_models": [
+            "reflection/beam-1.0-501b-a23b"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 13,
+          "tool_calls": 8,
+          "tool_failures": 1,
+          "validation_failures": 0,
+          "authorization_denials": 1,
+          "observed_cost_usd": 0.0069659,
+          "cost_known_model_calls": 13,
+          "input_tokens": 30954,
+          "input_tokens_known_requests": 6,
+          "output_tokens": 2837,
+          "output_tokens_known_requests": 6,
+          "total_tokens": 33791,
+          "total_tokens_known_requests": 6,
+          "reasoning_tokens": 1767,
+          "reasoning_tokens_known_requests": 6,
+          "cached_tokens": 18048,
+          "cached_tokens_known_requests": 6,
+          "median_end_to_end_seconds": 2.39575393749692,
+          "p95_end_to_end_seconds": 4.945252905999951,
+          "end_to_end_samples": 6,
+          "deterministic_trial_passes": 6,
+          "trials": 6
+        }
+      },
+      "scenarios": [
+        {
+          "id": "E06",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 15,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 15,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 15,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 15,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 14,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 14,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E06",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E07",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E07",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E09",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 36,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 36,
+              "failures": 0
+            },
+            "unsupported_installment_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E09",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "unsupported_installment_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E15",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E15",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E16",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E16",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "unauthenticated_access_denied": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E18",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E18",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        }
+      ]
+    },
+    {
+      "id": "phase4-original-live",
+      "source": "live_openrouter",
+      "dataset": "original",
+      "created_at": "2026-11-03T18:41:23.602165+00:00",
+      "system_prompt_sha256": "6865f24034067daf3e2cac4fb6e9b0c8e00b0a140ef8543d6a2aa15416d2cebe",
+      "model_calls": 93,
+      "observed_cost_usd": 0.04493680952,
+      "model_metrics": {
+        "standard": {
+          "requests": 19,
+          "successful_requests": 18,
+          "error_rate": 0.05263157894736842,
+          "median_ttft_seconds": 2.319661542016547,
+          "p95_ttft_seconds": 8.999290720446144,
+          "ttft_samples": 18,
+          "median_total_latency_seconds": 4.593151395500172,
+          "p95_total_latency_seconds": 12.105762831150782,
+          "latency_samples": 18,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.02107420952,
+          "mean_cost_usd": 0.0011091689221052632,
+          "cost_known_requests": 19,
+          "providers": [
+            "Alibaba",
+            "Cloudflare",
+            "Cohere",
+            "Decart",
+            "DigitalOcean",
+            "InferenceNet",
+            "Nebius",
+            "Parasail",
+            "Particle AI",
+            "Relace",
+            "Together",
+            "Wafer"
+          ],
+          "actual_models": [
+            "deepseek/deepseek-v4.1-flash-1017"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 2,
+          "timeouts": 0,
+          "incomplete_streams": 1,
+          "model_calls": 49,
+          "tool_calls": 47,
+          "tool_failures": 1,
+          "validation_failures": 0,
+          "authorization_denials": 1,
+          "observed_cost_usd": 0.02107420952,
+          "cost_known_model_calls": 49,
+          "input_tokens": 160949,
+          "input_tokens_known_requests": 19,
+          "output_tokens": 9086,
+          "output_tokens_known_requests": 19,
+          "total_tokens": 170035,
+          "total_tokens_known_requests": 19,
+          "reasoning_tokens": 3450,
+          "reasoning_tokens_known_requests": 19,
+          "cached_tokens": 81920,
+          "cached_tokens_known_requests": 19,
+          "median_end_to_end_seconds": 4.5932077705074335,
+          "p95_end_to_end_seconds": 12.105824016900439,
+          "end_to_end_samples": 18,
+          "deterministic_trial_passes": 14,
+          "trials": 17
+        },
+        "fast": {
+          "requests": 19,
+          "successful_requests": 18,
+          "error_rate": 0.05263157894736842,
+          "median_ttft_seconds": 2.1117392710002605,
+          "p95_ttft_seconds": 5.693546043730742,
+          "ttft_samples": 18,
+          "median_total_latency_seconds": 2.276434082988999,
+          "p95_total_latency_seconds": 6.139202697288413,
+          "latency_samples": 18,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.0238626,
+          "mean_cost_usd": 0.0012559263157894737,
+          "cost_known_requests": 19,
+          "providers": [
+            "Nebius"
+          ],
+          "actual_models": [
+            "reflection/beam-1.0-501b-a23b"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 1,
+          "model_calls": 44,
+          "tool_calls": 41,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.0238626,
+          "cost_known_model_calls": 44,
+          "input_tokens": 117756,
+          "input_tokens_known_requests": 19,
+          "output_tokens": 11294,
+          "output_tokens_known_requests": 19,
+          "total_tokens": 129050,
+          "total_tokens_known_requests": 19,
+          "reasoning_tokens": 7898,
+          "reasoning_tokens_known_requests": 19,
+          "cached_tokens": 84352,
+          "cached_tokens_known_requests": 19,
+          "median_end_to_end_seconds": 2.276488124989555,
+          "p95_end_to_end_seconds": 6.139296841098979,
+          "end_to_end_samples": 18,
+          "deterministic_trial_passes": 16,
+          "trials": 17
+        }
+      },
+      "scenarios": [
+        {
+          "id": "E01",
+          "mode": "standard",
+          "status": "fail",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": false,
+              "assertions": 1,
+              "failures": 1
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E01",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E02",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E02",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E03",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "answer_exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E03",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "answer_exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E04",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E04",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E05",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "requested_product_identity": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E05",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 14,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 14,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 14,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 14,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_product_identity": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E06",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E06",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "requested_product_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E07",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E07",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E08",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "answer_exact_best_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E08",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "answer_exact_best_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E09",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 36,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 36,
+              "failures": 0
+            },
+            "unsupported_installment_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E09",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "unsupported_installment_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E10",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 7,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 24,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 24,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E10",
+          "mode": "standard",
+          "status": "fail",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 20,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 20,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 20,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 20,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 20,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": false,
+              "assertions": 1,
+              "failures": 1
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E11",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "requested_product_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success",
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E11",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_product_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success",
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E12",
+          "mode": "fast",
+          "status": "fail",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": false,
+              "assertions": 1,
+              "failures": 1
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 13,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 13,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 13,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 13,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 13,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "failed"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E12",
+          "mode": "standard",
+          "status": "fail",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": false,
+              "assertions": 1,
+              "failures": 1
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 25,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "failed"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E13",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E13",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E14",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "answer_exact_catalog_price": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success",
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E14",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "answer_exact_catalog_price": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success",
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E15",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E15",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E16",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E16",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "unauthenticated_access_denied": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E18",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E18",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        }
+      ]
+    },
+    {
+      "id": "phase4-original-regression",
+      "source": "live_openrouter",
+      "dataset": "original",
+      "created_at": "2026-11-03T18:46:04.025446+00:00",
+      "system_prompt_sha256": "de636fc9c2481b380dc397a30f67166ffe0c43e12fa14e010b17149f7dfff5d3",
+      "model_calls": 14,
+      "observed_cost_usd": 0.011706573,
+      "model_metrics": {
+        "standard": {
+          "requests": 3,
+          "successful_requests": 3,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 1.1843254160194192,
+          "p95_ttft_seconds": 2.3676733916101513,
+          "ttft_samples": 3,
+          "median_total_latency_seconds": 4.486736082995776,
+          "p95_total_latency_seconds": 9.22539587081701,
+          "latency_samples": 3,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.004900172999999999,
+          "mean_cost_usd": 0.0016333909999999999,
+          "cost_known_requests": 3,
+          "providers": [
+            "Alibaba",
+            "DigitalOcean",
+            "Parasail"
+          ],
+          "actual_models": [
+            "deepseek/deepseek-v4.1-flash-1017"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 7,
+          "tool_calls": 6,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.004900172999999999,
+          "cost_known_model_calls": 7,
+          "input_tokens": 27053,
+          "input_tokens_known_requests": 3,
+          "output_tokens": 1668,
+          "output_tokens_known_requests": 3,
+          "total_tokens": 28721,
+          "total_tokens_known_requests": 3,
+          "reasoning_tokens": 568,
+          "reasoning_tokens_known_requests": 3,
+          "cached_tokens": 10752,
+          "cached_tokens_known_requests": 3,
+          "median_end_to_end_seconds": 4.486786374996882,
+          "p95_end_to_end_seconds": 9.225444361913834,
+          "end_to_end_samples": 3,
+          "deterministic_trial_passes": 3,
+          "trials": 3
+        },
+        "fast": {
+          "requests": 3,
+          "successful_requests": 3,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 3.294788541010348,
+          "p95_ttft_seconds": 5.019223641903954,
+          "ttft_samples": 3,
+          "median_total_latency_seconds": 3.4633740830176976,
+          "p95_total_latency_seconds": 5.814533596092952,
+          "latency_samples": 3,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.006806400000000001,
+          "mean_cost_usd": 0.0022688,
+          "cost_known_requests": 3,
+          "providers": [
+            "Nebius"
+          ],
+          "actual_models": [
+            "reflection/beam-1.0-501b-a23b"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 7,
+          "tool_calls": 6,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.006806400000000001,
+          "cost_known_model_calls": 7,
+          "input_tokens": 25724,
+          "input_tokens_known_requests": 3,
+          "output_tokens": 2449,
+          "output_tokens_known_requests": 3,
+          "total_tokens": 28173,
+          "total_tokens_known_requests": 3,
+          "reasoning_tokens": 1489,
+          "reasoning_tokens_known_requests": 3,
+          "cached_tokens": 10368,
+          "cached_tokens_known_requests": 3,
+          "median_end_to_end_seconds": 3.463407500006724,
+          "p95_end_to_end_seconds": 5.814601962789311,
+          "end_to_end_samples": 3,
+          "deterministic_trial_passes": 3,
+          "trials": 3
+        }
+      },
+      "scenarios": [
+        {
+          "id": "E01",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E01",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E10",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 24,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 24,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E10",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 11,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 10,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_product_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 24,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 24,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E12",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E12",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        }
+      ]
+    },
+    {
+      "id": "phase4-pilot",
+      "source": "live_openrouter",
+      "dataset": "original",
+      "created_at": "2026-11-03T18:39:31.579790+00:00",
+      "system_prompt_sha256": "6865f24034067daf3e2cac4fb6e9b0c8e00b0a140ef8543d6a2aa15416d2cebe",
+      "model_calls": 8,
+      "observed_cost_usd": 0.005285375,
+      "model_metrics": {
+        "standard": {
+          "requests": 2,
+          "successful_requests": 2,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 3.7862989795103204,
+          "p95_ttft_seconds": 5.122409036074532,
+          "ttft_samples": 2,
+          "median_total_latency_seconds": 4.198675791500136,
+          "p95_total_latency_seconds": 5.4861082041607006,
+          "latency_samples": 2,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.0025219250000000004,
+          "mean_cost_usd": 0.0012609625000000002,
+          "cost_known_requests": 2,
+          "providers": [
+            "DigitalOcean",
+            "Nebius",
+            "OpenInference",
+            "Wafer"
+          ],
+          "actual_models": [
+            "deepseek/deepseek-v4.1-flash-1017"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 1,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 4,
+          "tool_calls": 3,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.0025219250000000004,
+          "cost_known_model_calls": 4,
+          "input_tokens": 11633,
+          "input_tokens_known_requests": 2,
+          "output_tokens": 844,
+          "output_tokens_known_requests": 2,
+          "total_tokens": 12477,
+          "total_tokens_known_requests": 2,
+          "reasoning_tokens": 496,
+          "reasoning_tokens_known_requests": 2,
+          "cached_tokens": 0,
+          "cached_tokens_known_requests": 2,
+          "median_end_to_end_seconds": 4.198736271006055,
+          "p95_end_to_end_seconds": 5.486184152416536,
+          "end_to_end_samples": 2,
+          "deterministic_trial_passes": 2,
+          "trials": 2
+        },
+        "fast": {
+          "requests": 2,
+          "successful_requests": 2,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 2.101606374999392,
+          "p95_ttft_seconds": 2.505964337506157,
+          "ttft_samples": 2,
+          "median_total_latency_seconds": 2.322809895995306,
+          "p95_total_latency_seconds": 2.7392391274042893,
+          "latency_samples": 2,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.0027634499999999998,
+          "mean_cost_usd": 0.0013817249999999999,
+          "cost_known_requests": 2,
+          "providers": [
+            "Nebius"
+          ],
+          "actual_models": [
+            "reflection/beam-1.0-501b-a23b"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 4,
+          "tool_calls": 3,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.0027634499999999998,
+          "cost_known_model_calls": 4,
+          "input_tokens": 10837,
+          "input_tokens_known_requests": 2,
+          "output_tokens": 963,
+          "output_tokens_known_requests": 2,
+          "total_tokens": 11800,
+          "total_tokens_known_requests": 2,
+          "reasoning_tokens": 584,
+          "reasoning_tokens_known_requests": 2,
+          "cached_tokens": 4544,
+          "cached_tokens_known_requests": 2,
+          "median_end_to_end_seconds": 2.3228709170070942,
+          "p95_end_to_end_seconds": 2.739293942009681,
+          "end_to_end_samples": 2,
+          "deterministic_trial_passes": 2,
+          "trials": 2
+        }
+      },
+      "scenarios": [
+        {
+          "id": "E01",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E01",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E04",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E04",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        }
+      ]
+    },
+    {
+      "id": "phase4-promotion-regression",
+      "source": "live_openrouter",
+      "dataset": "original",
+      "created_at": "2026-11-03T18:50:29.491265+00:00",
+      "system_prompt_sha256": "96625588587ff8a64222cc089d4f706ae2833b85ec54b0d400cc36c7760e00e9",
+      "model_calls": 6,
+      "observed_cost_usd": 0.0037644020000000005,
+      "model_metrics": {
+        "standard": {
+          "requests": 1,
+          "successful_requests": 1,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 5.500571499986108,
+          "p95_ttft_seconds": 5.500571499986108,
+          "ttft_samples": 1,
+          "median_total_latency_seconds": 6.232141457992839,
+          "p95_total_latency_seconds": 6.232141457992839,
+          "latency_samples": 1,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.0017213520000000002,
+          "mean_cost_usd": 0.0017213520000000002,
+          "cost_known_requests": 1,
+          "providers": [
+            "DigitalOcean"
+          ],
+          "actual_models": [
+            "deepseek/deepseek-v4.1-flash-1017"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 3,
+          "tool_calls": 4,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.0017213520000000002,
+          "cost_known_model_calls": 3,
+          "input_tokens": 13334,
+          "input_tokens_known_requests": 1,
+          "output_tokens": 573,
+          "output_tokens_known_requests": 1,
+          "total_tokens": 13907,
+          "total_tokens_known_requests": 1,
+          "reasoning_tokens": 208,
+          "reasoning_tokens_known_requests": 1,
+          "cached_tokens": 6272,
+          "cached_tokens_known_requests": 1,
+          "median_end_to_end_seconds": 6.2322275420010556,
+          "p95_end_to_end_seconds": 6.2322275420010556,
+          "end_to_end_samples": 1,
+          "deterministic_trial_passes": 1,
+          "trials": 1
+        },
+        "fast": {
+          "requests": 1,
+          "successful_requests": 1,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 3.772933333006222,
+          "p95_ttft_seconds": 3.772933333006222,
+          "ttft_samples": 1,
+          "median_total_latency_seconds": 4.114436833013315,
+          "p95_total_latency_seconds": 4.114436833013315,
+          "latency_samples": 1,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.0020430500000000002,
+          "mean_cost_usd": 0.0020430500000000002,
+          "cost_known_requests": 1,
+          "providers": [
+            "Nebius"
+          ],
+          "actual_models": [
+            "reflection/beam-1.0-501b-a23b"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 3,
+          "tool_calls": 3,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.0020430500000000002,
+          "cost_known_model_calls": 3,
+          "input_tokens": 9801,
+          "input_tokens_known_requests": 1,
+          "output_tokens": 732,
+          "output_tokens_known_requests": 1,
+          "total_tokens": 10533,
+          "total_tokens_known_requests": 1,
+          "reasoning_tokens": 429,
+          "reasoning_tokens_known_requests": 1,
+          "cached_tokens": 5696,
+          "cached_tokens_known_requests": 1,
+          "median_end_to_end_seconds": 4.114517083013197,
+          "p95_end_to_end_seconds": 4.114517083013197,
+          "end_to_end_samples": 1,
+          "deterministic_trial_passes": 1,
+          "trials": 1
+        }
+      },
+      "scenarios": [
+        {
+          "id": "E08",
+          "mode": "standard",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "eligible_promotion": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_promotion_amount": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "answer_exact_best_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E08",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "eligible_promotion": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_promotion_amount": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 12,
+              "failures": 0
+            },
+            "answer_exact_best_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        }
+      ]
+    },
+    {
+      "id": "phase4-public-live",
+      "source": "live_openrouter",
+      "dataset": "synthetic",
+      "created_at": "2026-11-03T18:42:30.973065+00:00",
+      "system_prompt_sha256": "6865f24034067daf3e2cac4fb6e9b0c8e00b0a140ef8543d6a2aa15416d2cebe",
+      "model_calls": 19,
+      "observed_cost_usd": 0.00956285,
+      "model_metrics": {
+        "fast": {
+          "requests": 7,
+          "successful_requests": 7,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 2.9500763330142945,
+          "p95_ttft_seconds": 6.054987724908276,
+          "ttft_samples": 7,
+          "median_total_latency_seconds": 3.137473000009777,
+          "p95_total_latency_seconds": 6.668703250118413,
+          "latency_samples": 7,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.00956285,
+          "mean_cost_usd": 0.0013661214285714284,
+          "cost_known_requests": 7,
+          "providers": [
+            "Nebius"
+          ],
+          "actual_models": [
+            "reflection/beam-1.0-501b-a23b"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 19,
+          "tool_calls": 20,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.00956285,
+          "cost_known_model_calls": 19,
+          "input_tokens": 48281,
+          "input_tokens_known_requests": 7,
+          "output_tokens": 4315,
+          "output_tokens_known_requests": 7,
+          "total_tokens": 52596,
+          "total_tokens_known_requests": 7,
+          "reasoning_tokens": 2858,
+          "reasoning_tokens_known_requests": 7,
+          "cached_tokens": 34112,
+          "cached_tokens_known_requests": 7,
+          "median_end_to_end_seconds": 3.1375344580155797,
+          "p95_end_to_end_seconds": 6.668775570500291,
+          "end_to_end_samples": 7,
+          "deterministic_trial_passes": 6,
+          "trials": 7
+        }
+      },
+      "scenarios": [
+        {
+          "id": "E01",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E02",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E03",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "eligible_promotion": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_promotion_amount": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "answer_exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E04",
+          "mode": "fast",
+          "status": "fail",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": false,
+              "assertions": 5,
+              "failures": 1
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 5,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": false,
+              "assertions": 5,
+              "failures": 1
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E08",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 3,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "eligible_promotion": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "exact_promotion_amount": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 9,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 9,
+              "failures": 0
+            },
+            "answer_exact_best_pix": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E10",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 8,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 8,
+              "failures": 0
+            },
+            "bounded_result_count": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "catalog_identity": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "exact_catalog_price": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "exact_stock_and_status": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "correct_sellability": {
+              "passed": true,
+              "assertions": 4,
+              "failures": 0
+            },
+            "available_only": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "price_filter": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "requested_product_identity": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "eligible_promotion": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "exact_promotion_amount": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "trusted_catalog_base": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "nonstacked_pix": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "installment_total_conserved": {
+              "passed": true,
+              "assertions": 18,
+              "failures": 0
+            },
+            "installment_minimum": {
+              "passed": true,
+              "assertions": 18,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_budget_filter": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "acoustic_results_within_budget": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        },
+        {
+          "id": "E15",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        }
+      ]
+    },
+    {
+      "id": "phase4-public-policy-regression",
+      "source": "live_openrouter",
+      "dataset": "synthetic",
+      "created_at": "2026-11-03T18:46:06.905945+00:00",
+      "system_prompt_sha256": "de636fc9c2481b380dc397a30f67166ffe0c43e12fa14e010b17149f7dfff5d3",
+      "model_calls": 2,
+      "observed_cost_usd": 0.0013086500000000002,
+      "model_metrics": {
+        "fast": {
+          "requests": 1,
+          "successful_requests": 1,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 2.0546597079955973,
+          "p95_ttft_seconds": 2.0546597079955973,
+          "ttft_samples": 1,
+          "median_total_latency_seconds": 2.3123695829999633,
+          "p95_total_latency_seconds": 2.3123695829999633,
+          "latency_samples": 1,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.0013086500000000002,
+          "mean_cost_usd": 0.0013086500000000002,
+          "cost_known_requests": 1,
+          "providers": [
+            "Nebius"
+          ],
+          "actual_models": [
+            "reflection/beam-1.0-501b-a23b"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 2,
+          "tool_calls": 2,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.0013086500000000002,
+          "cost_known_model_calls": 2,
+          "input_tokens": 4953,
+          "input_tokens_known_requests": 1,
+          "output_tokens": 416,
+          "output_tokens_known_requests": 1,
+          "total_tokens": 5369,
+          "total_tokens_known_requests": 1,
+          "reasoning_tokens": 257,
+          "reasoning_tokens_known_requests": 1,
+          "cached_tokens": 1728,
+          "cached_tokens_known_requests": 1,
+          "median_end_to_end_seconds": 2.3124472920026165,
+          "p95_end_to_end_seconds": 2.3124472920026165,
+          "end_to_end_samples": 1,
+          "deterministic_trial_passes": 1,
+          "trials": 1
+        }
+      },
+      "scenarios": [
+        {
+          "id": "E04",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "validated_arguments": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "data_source_available": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "nonempty_policy_retrieval": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "verbatim_source_sections": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "requested_policy_topic": {
+              "passed": true,
+              "assertions": 2,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        }
+      ]
+    },
+    {
+      "id": "phase4-public-privacy-final",
+      "source": "live_openrouter",
+      "dataset": "synthetic",
+      "created_at": "2026-11-03T18:53:44.195755+00:00",
+      "system_prompt_sha256": "7481a8d3432dddac85bbce718b94ac6f31e5bc5be95f4ee7bf6e6bc1524e3fb4",
+      "model_calls": 1,
+      "observed_cost_usd": 0.00061745,
+      "model_metrics": {
+        "fast": {
+          "requests": 1,
+          "successful_requests": 1,
+          "error_rate": 0.0,
+          "median_ttft_seconds": 1.1635682499909308,
+          "p95_ttft_seconds": 1.1635682499909308,
+          "ttft_samples": 1,
+          "median_total_latency_seconds": 1.3920180420100223,
+          "p95_total_latency_seconds": 1.3920180420100223,
+          "latency_samples": 1,
+          "mean_output_tokens_per_second": null,
+          "throughput_samples": 0,
+          "total_cost_usd": 0.00061745,
+          "mean_cost_usd": 0.00061745,
+          "cost_known_requests": 1,
+          "providers": [
+            "Nebius"
+          ],
+          "actual_models": [
+            "reflection/beam-1.0-501b-a23b"
+          ],
+          "fallback_occurrences": 0,
+          "fallback_unknown_requests": 0,
+          "provider_fallback_occurrences": 0,
+          "timeouts": 0,
+          "incomplete_streams": 0,
+          "model_calls": 1,
+          "tool_calls": 0,
+          "tool_failures": 0,
+          "validation_failures": 0,
+          "authorization_denials": 0,
+          "observed_cost_usd": 0.00061745,
+          "cost_known_model_calls": 1,
+          "input_tokens": 1729,
+          "input_tokens_known_requests": 1,
+          "output_tokens": 198,
+          "output_tokens_known_requests": 1,
+          "total_tokens": 1927,
+          "total_tokens_known_requests": 1,
+          "reasoning_tokens": 112,
+          "reasoning_tokens_known_requests": 1,
+          "cached_tokens": 64,
+          "cached_tokens_known_requests": 1,
+          "median_end_to_end_seconds": 1.3920455840125214,
+          "p95_end_to_end_seconds": 1.3920455840125214,
+          "end_to_end_samples": 1,
+          "deterministic_trial_passes": 1,
+          "trials": 1
+        }
+      },
+      "scenarios": [
+        {
+          "id": "E15",
+          "mode": "fast",
+          "status": "pass",
+          "checks": {
+            "complete_attributed_response": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "no_private_disclosure": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "required_tool_selection": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            },
+            "all_scenario_turns_executed": {
+              "passed": true,
+              "assertions": 1,
+              "failures": 0
+            }
+          },
+          "turn_statuses": [
+            "success"
+          ],
+          "answer_review": "Deterministic checks plus separately documented response inspection; not an overall automated quality grade."
+        }
+      ]
+    }
+  ],
+  "all_phase4_live_model_calls": 195,
+  "all_phase4_observed_cost_usd": 0.10739036347,
+  "authorized_model_call_cap": 250,
+  "cost_known_model_calls": 195,
+  "ui_smoke": {
+    "source": "actual_openrouter_ui",
+    "dataset": "synthetic",
+    "turns": 7,
+    "model_calls": 20,
+    "cost_usd": 0.01365825,
+    "limitation": "One implicit English request still received Portuguese; selected English demonstration explicitly requested English."
+  },
+  "clean_clone": {
+    "status": "pass",
+    "public_origin_revision": "8ae087e",
+    "unpublished_candidate_revision": "6b7f5fad6d042981119834ffe83b8a8550eeb041",
+    "application_sha256": "07e2fdda972eeed66de89d404d9103c9cfe0f9f9f932fe484ba08ecbdb6918f5",
+    "python": "3.14.6",
+    "sqlite": "3.50.4",
+    "poppler": "26.09.0",
+    "public": {
+      "records": 22,
+      "policy_sections": 18,
+      "tests_run": 155,
+      "tests_passed": 151,
+      "tests_skipped": 4,
+      "web_started": true,
+      "live_cli_status": "success"
+    },
+    "original": {
+      "records": 191,
+      "policy_sections": 29,
+      "tests_run": 155,
+      "tests_passed": 155,
+      "tests_skipped": 0,
+      "eight_source_hashes_unchanged": true,
+      "web_started": true,
+      "live_cli_status": "success"
+    }
+  },
+  "offline_contracts": {
+    "synthetic": {
+      "pass": 17,
+      "fail": 0,
+      "not_executed_as_contract": 3
+    },
+    "original": {
+      "pass": 17,
+      "fail": 0,
+      "not_executed_as_contract": 3
+    },
+    "note": "E13 conversation, E17 trusted test-only identity and E20 interruption are separate; controlled tests cover E17/E20."
+  },
+  "security_review": {
+    "reachable_blobs_scanned": 149,
+    "candidate_files_scanned": 97,
+    "findings": 0,
+    "original_policy_passages_found": 0,
+    "history_rewritten": false
+  },
+  "media": {
+    "actual_screenshots": 4,
+    "actual_conversation_examples": 5,
+    "video_recorded": false,
+    "recording_storyboard_prepared": true,
+    "readme_rendered_locally": true,
+    "github_render_verified": false
+  },
+  "publication_preparation": {
+    "synthetic_csv_line_endings_normalized": [
+      "tests/fixtures/demo/categories.csv",
+      "tests/fixtures/demo/products.csv"
+    ],
+    "parsed_values_unchanged": true,
+    "original_files_modified": false,
+    "delivery_application_sha256": "36269eb03e946c963477a6c550259a682431fa76ea79a8326b40fea42d2aa8ba"
+  }
+}

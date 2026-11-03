@@ -1,21 +1,23 @@
-# Executable foundation examples
+# Representative conversations
 
-Run `python examples/queries.py` after installation, or
-`PYTHONPATH=src python3 examples/queries.py`. It uses synthetic fixtures and a
-temporary database. It is a data-layer demo, not an LLM conversation or real login.
+All five examples contain actual model/UI responses and genuine tool execution.
+Their inputs and business facts are **synthetic**, never original customer records
+or extracted internal policies. Responses are preserved, including recovery paths.
+They are observations, not golden replies guaranteed on a later model run.
 
-| Scenario | Operation | Observed behavior |
-|---|---|---|
-| Affordable available instrument | `search_products("violao", max_price_brl="500")` | Synthetic product 101 at `Decimal("449.90")`, without authentication |
-| Eligible snapshot campaigns | `get_active_promotions()` | Synthetic campaigns 1 and 5; other offers excluded |
-| Complete online-return subsection | Synthetic `get_store_policy("returns.online", include_related=True)` | Parent and exclusions retained with source metadata |
-| Claimed identity rejected | Default order repository with a customer-ID dictionary | `AccessDenied`, no private data printed |
+| Example | Demonstrates |
+|---|---|
+| [Product discovery](01-product-discovery.md) | Available instruments, price filter and stock |
+| [Commercial reasoning](02-commercial-reasoning.md) | Multiple tools, offers, exact PIX and installments |
+| [Online withdrawal](03-online-return.md) | Receipt-based deadline and limited action authority |
+| [Privacy boundary](04-privacy-boundary.md) | Real backend authorization denial and no returned private row |
+| [Store and named price](05-store-and-price.md) | Location and catalog/promotion facts, in two independent sessions |
 
-Security tests additionally issue **test-only** opaque sessions: A can read A's
-synthetic orders, cannot read B's, and cannot override its identity. These labels
-are not actual customers. Portuguese `violao` means “acoustic guitar”; Portuguese
-fixture strings are synthetic business content.
+The original Takamine/store questions were also run privately against the supplied
+assessment package; only aggregate outcomes are public. Examples were collected
+during consolidation, with prompt hashes where available. Later prompt refinements
+and source expansion are recorded in [evaluation](../docs/evaluation.md).
 
-Future actual conversations will use pt-BR exchanges and English scenario titles,
-behavior explanations, technical annotations, and necessary translations. No
-unimplemented agent response is presented as an observed result here.
+For a key-free backend demonstration, run `python scripts/demo_tools.py` after
+`python scripts/prepare_demo.py`. The older `python examples/queries.py` uses the
+smaller edge-case fixtures in a temporary database and also makes no model calls.
