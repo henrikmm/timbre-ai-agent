@@ -120,6 +120,30 @@ class ToolConversationTests(DatabaseTestCase, OfflineTestCase):
         self.assertEqual(metrics.cost_known_model_calls, 1)
         self.assertEqual(metrics.token_coverage["input_tokens"], 1)
 
+    def test_failed_final_stream_reports_its_own_terminal_reason_without_retry(self):
+        for finish in (None, "length"):
+            with self.subTest(finish=finish):
+                conversation, client, _ = self.conversation([
+                    request_tool(product_call()), [LLMEvent(text="Synthetic partial", finish_reason=finish)]])
+                result = conversation.send("Synthetic question")
+                self.assertEqual(result.metrics.status, "incomplete")
+                self.assertEqual(result.metrics.finish_reason, finish)
+                completed = [e for e in result.events if e.event_type == "llm_request_completed"]
+                self.assertEqual([e.finish_reason for e in completed], ["tool_calls", finish])
+                self.assertEqual(completed[-1].error_category, "incomplete_response")
+                self.assertEqual(len(conversation.history), 1)
+                self.assertEqual(len(client.calls), 2)
+
+    def test_tool_preamble_and_final_text_have_a_paragraph_boundary(self):
+        events = [LLMEvent(text="Checking the catalog."), *request_tool(product_call())]
+        conversation, client, _ = self.conversation([events, synthetic_reply("Synthetic final answer.")])
+        chunks = []
+        result = conversation.send("Synthetic question", on_text=chunks.append)
+        self.assertEqual(result.text, "Checking the catalog.\n\nSynthetic final answer.")
+        self.assertEqual("".join(chunks), result.text)
+        self.assertEqual(conversation.history[-1]["content"], "Synthetic final answer.")
+        self.assertEqual(result.metrics.model_call_count, 2)
+
     def test_authorized_private_results_are_not_copied_to_trace_events(self):
         authorizer = SimulatedAuthorizer()
         context = authorizer.issue_for_test(9001)

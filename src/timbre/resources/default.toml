@@ -3,7 +3,8 @@
 default_mode = "standard"
 streaming = true
 timeout_seconds = 45
-max_output_tokens = 512
+# Reasoning and tool-call output share this per-model-call budget.
+max_output_tokens = 2048
 history_turn_limit = 12
 cross_model_fallback = true
 
@@ -21,11 +22,11 @@ reasoning_effort = "default"
 supported_reasoning_efforts = []
 
 [llm.modes.fast]
-model = "openai/gpt-oss-120b"
+model = "reflection/beam-1.0-501b-a23b"
 provider_sort = "latency"
-# Provider defaults keep the baseline comparable; low/medium/high are opt-in.
+# Leave optional effort controls unset until validated for this model and route.
 reasoning_effort = "default"
-supported_reasoning_efforts = ["low", "medium", "high"]
+supported_reasoning_efforts = []
 
 [routing]
 allow_provider_fallbacks = true

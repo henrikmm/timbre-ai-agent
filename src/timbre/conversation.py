@@ -84,16 +84,18 @@ class Conversation:
         metrics.metadata_lookup_seconds = self.clock() - started
 
     def send(self, text: str, *, on_text: Callable[[str], None] | None = None,
+             on_event: Callable[[TraceEvent], None] | None = None,
              cross_model_fallback: bool | None = None) -> TurnResult:
         if self._busy:
             raise RuntimeError("A conversation can have only one active request.")
         self._busy = True
         try:
-            return self._send(text, on_text=on_text, cross_model_fallback=cross_model_fallback)
+            return self._send(text, on_text=on_text, on_event=on_event,
+                              cross_model_fallback=cross_model_fallback)
         finally:
             self._busy = False
 
-    def _send(self, text: str, *, on_text=None, cross_model_fallback=None) -> TurnResult:
+    def _send(self, text: str, *, on_text=None, on_event=None, cross_model_fallback=None) -> TurnResult:
         if not isinstance(text, str) or not text.strip():
             raise ValueError("Enter a non-empty customer message.")
         mode = self.mode
@@ -122,11 +124,13 @@ class Conversation:
 
         def emit(event_type, *, span_id=None, llm_request_id=None, tool_call_id=None,
                  tool_name=None, **metadata):
-            self.observer.trace(TraceEvent(event_type=event_type,
+            event = self.observer.trace(TraceEvent(event_type=event_type,
                 timestamp=datetime.now(timezone.utc).isoformat(), session_id=self.session_id,
                 turn_id=metrics.turn_id, trace_id=metrics.trace_id,
                 span_id=span_id or metrics.trace_id, llm_request_id=llm_request_id,
                 tool_call_id=tool_call_id, tool_name=tool_name, **metadata))
+            if on_event is not None:
+                on_event(event)
 
         emit("request_started", status="pending")
         try:
@@ -160,6 +164,11 @@ class Conversation:
                         reasoning.add(event.reasoning_details)
                         saw_calls = saw_calls or bool(event.tool_calls)
                         if event.text:
+                            # Separate visible preambles and later model responses into paragraphs.
+                            if chunks and not call_chunks:
+                                chunks.append("\n\n")
+                                if on_text is not None:
+                                    on_text("\n\n")
                             chunks.append(event.text)
                             call_chunks.append(event.text)
                             if on_text is not None:
@@ -177,7 +186,8 @@ class Conversation:
                     category = (error.category if isinstance(error, LLMError) else
                                 "interrupted" if isinstance(error, KeyboardInterrupt) else
                                 "configuration" if isinstance(error, ConfigurationError) else "internal")
-                    attempt.finish("interrupted" if category == "interrupted" else "failed", category=category)
+                    attempt.finish("interrupted" if category == "interrupted" else "failed", category=category,
+                                   http_status=getattr(error, "http_status", None))
                     raise
                 finally:
                     try:
@@ -189,9 +199,12 @@ class Conversation:
                     finally:
                         if attempt.metrics.total_latency_seconds is None:
                             attempt.finish("failed", category="internal")
+                        # A missing terminal event must not inherit an earlier tool-call finish.
+                        metrics.finish_reason = attempt.metrics.finish_reason
                         emit("llm_request_completed", span_id=request_id, llm_request_id=request_id,
                              duration_seconds=attempt.metrics.total_latency_seconds, status=attempt.metrics.status,
-                             error_category=attempt.metrics.error_category)
+                             error_category=attempt.metrics.error_category,
+                             finish_reason=attempt.metrics.finish_reason, http_status=attempt.metrics.http_status)
                 assistant = {"role": "assistant", "content": "".join(call_chunks) or None}
                 details = reasoning.complete()
                 if details:

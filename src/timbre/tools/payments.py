@@ -1,4 +1,4 @@
-"""Exact, source-linked payment candidates with conservative ambiguity handling."""
+"""Exact payment options using the documented demonstration business decisions."""
 
 from dataclasses import dataclass
 from decimal import Decimal, ROUND_HALF_UP
@@ -71,30 +71,27 @@ class PaymentRules:
         payments = [from_cents(quotient + (index < remainder)) for index in range(count)]
         tier_minimum = next(minimum for low, high, minimum in self.tiers if low <= count <= high)
         lowest = min(payments)
-        if lowest >= max(self.table_minimum, tier_minimum):
-            available, reason = True, None
-        elif lowest >= min(self.table_minimum, tier_minimum):
-            available, reason = False, "policy_confirmation_required"
-        else:
-            available, reason = False, "minimum_installment_not_met"
+        # The detailed schedule takes precedence over the summary table.
+        available = lowest >= tier_minimum
+        reason = None if available else "minimum_installment_not_met"
         return {"installments": count, "available": available, "reason": reason,
                 "total_brl": amount, "installment_amounts_brl": payments,
-                "interest_percent": "0", "minimum_policy_amounts_brl": [self.table_minimum, tier_minimum]}
+                "interest_percent": "0", "minimum_installment_brl": tier_minimum}
 
 
 def payment_options(product, promotions, catalog, *, payment_method=None, installments=None):
     rules = PaymentRules.from_catalog(catalog)
     price = product["price_brl"]
     promotional = [dict(promotion, promotional_price_brl=discounted(price, promotion["discount_percent"]),
-                        eligibility_confirmed=False) for promotion in promotions]
+                        eligible_under_service_policy=True) for promotion in promotions]
     pix = {"method": "pix", "total_brl": discounted(price, rules.pix_percent),
            "discount_percent": rules.pix_percent, "discount_base": "list_price",
-           "selection_requires_confirmation": bool(promotional)}
+           "selection_requires_confirmation": False}
     plans = [rules.plan(price, count) for count in range(1, rules.maximum_installments + 1)]
-    # Candidate scenarios stay separate. No campaign is selected automatically and
-    # no PIX percentage is ever applied to an already discounted campaign price.
+    # Keep campaign calculations separate; best_pix_option selects one candidate.
+    # Never apply an additional PIX percentage to a discounted campaign price.
     promotion_plans = [{"promotion_id": promotion["promotion_id"],
-                        "selection_requires_confirmation": True,
+                        "selection_requires_confirmation": False,
                         "pix_total_brl": promotion["promotional_price_brl"],
                         "pix_additional_discount_percent": "0",
                         "credit_plans": [rules.plan(promotion["promotional_price_brl"], count)
@@ -107,14 +104,16 @@ def payment_options(product, promotions, catalog, *, payment_method=None, instal
             requested = {"available": False, "reason": "method_not_supported_by_policy"}
         elif method == "credit_card":
             requested = rules.plan(price, installments or 1)
-            if promotional:
-                requested = {**requested, "selection_requires_confirmation": True}
         elif installments not in (None, 1):
             requested = {"available": False, "reason": "method_does_not_support_installments"}
         else:
             requested = {"available": True, "method": method,
                          "total_brl": pix["total_brl"] if method == "pix" else price,
-                         "selection_requires_confirmation": bool(promotional)}
+                         "selection_requires_confirmation": False}
+    candidates = [{"method": "pix", "total_brl": pix["total_brl"], "promotion_id": None},
+                  *[{"method": "pix", "total_brl": row["promotional_price_brl"],
+                     "promotion_id": row["promotion_id"]} for row in promotional]]
+    best_pix = min(candidates, key=lambda row: (row["total_brl"], row["promotion_id"] or 0))
     return {"product_id": product["product_id"], "product_name": product["name"],
             "list_price_brl": price, "available": True, "pix": pix,
             "quote_status": "snapshot_calculation_only", "live_quote_confirmed": False,
@@ -123,8 +122,7 @@ def payment_options(product, promotions, catalog, *, payment_method=None, instal
             "credit_plans": plans, "promotional_candidates": promotional,
             "promotional_payment_candidates": promotion_plans, "requested_option": requested,
             "discounts_stack": False,
-            "limitations": ["Snapshot prices and campaign flags are not live quotes.",
-                            "Campaign dates, audience, priority, and list-price opt-out are unconfirmed.",
-                            "Plans satisfying both conflicting minima are confirmed; disputed plans require staff confirmation.",
-                            "Short-plan exception wording and mixed payments require staff confirmation."],
+            "best_pix_option": best_pix,
+            "applied_decisions": ["detailed_installment_schedule", "active_campaign_flags",
+                                  "lowest_nonstacked_pix_option"],
             "policy_sources": list(rules.sources)}

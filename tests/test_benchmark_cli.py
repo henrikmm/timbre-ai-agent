@@ -116,10 +116,10 @@ class CLITests(OfflineTestCase):
         self.assertEqual(len(client.calls), 2)
         self.assertEqual(len(client.calls[-1]["messages"]), 4)
         self.assertEqual(len(conversation.history), 1)
-        self.assertIn("Histórico preservado", output.getvalue())
-        self.assertIn("Requisições: 2", output.getvalue())
-        self.assertIn("Modo: standard", output.getvalue())
-        self.assertIn("Modo: fast", output.getvalue())
+        self.assertIn("History preserved", output.getvalue())
+        self.assertIn("Requests: 2", output.getvalue())
+        self.assertIn("Mode: standard", output.getvalue())
+        self.assertIn("Mode: fast", output.getvalue())
 
     def test_partial_response_is_marked_incomplete_without_hidden_retry(self):
         from timbre.llm.types import LLMEvent
@@ -130,7 +130,7 @@ class CLITests(OfflineTestCase):
         output = io.StringIO()
         run_chat(conversation, input_fn=lambda _: next(entries), output=output)
         self.assertIn("Resposta parcial", output.getvalue())
-        self.assertIn("tentativa não foi salva", output.getvalue())
+        self.assertIn("attempt was not saved", output.getvalue())
         self.assertEqual(len(client.calls), 1)
 
     def test_missing_key_error_is_actionable_without_network(self):
@@ -145,4 +145,4 @@ class CLITests(OfflineTestCase):
         entries = iter(["Oi", "/exit"])
         output = io.StringIO()
         run_chat(conversation, input_fn=lambda _: next(entries), output=output)
-        self.assertIn("modelo alternativo openai/gpt-oss-120b", output.getvalue())
+        self.assertIn("fallback model reflection/beam-1.0-501b-a23b", output.getvalue())

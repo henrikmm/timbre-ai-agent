@@ -43,7 +43,7 @@ class ConfigurationTests(OfflineTestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "custom.toml"
             path.write_text(default.replace('default_mode = "standard"', 'default_mode = "fast"')
-                             .replace('model = "openai/gpt-oss-120b"', 'model = "synthetic/custom-model"'))
+                             .replace('model = "reflection/beam-1.0-501b-a23b"', 'model = "synthetic/custom-model"'))
             config = load_config(path)
         self.assertEqual(config.default_mode, "fast")
         self.assertEqual(config.modes["fast"].model, "synthetic/custom-model")
@@ -54,7 +54,7 @@ class ConfigurationTests(OfflineTestCase):
                      default.replace('default_mode = "standard"', 'default_mode = []'),
                      default.replace("timeout_seconds = 45", "timeout_seconds = true"),
                      default.replace("history_turn_limit = 12", "history_turn_limit = 0"),
-                     default.replace("max_output_tokens = 512", "max_output_tokens = -1"),
+                     default.replace("max_output_tokens = 2048", "max_output_tokens = -1"),
                      default.replace('provider_sort = "latency"', 'provider_sort = "imaginary"'),
                      default.replace("store_conversation_content = false", "store_conversation_content = true"),
                      default.replace("require_parameters = true", "require_parameters = false"),
@@ -73,7 +73,7 @@ class ConfigurationTests(OfflineTestCase):
     def test_opt_in_reasoning_is_not_silently_applied_to_unsupported_fallback(self):
         config = load_config()
         modes = dict(config.modes)
-        modes["fast"] = replace(modes["fast"], reasoning_effort="low")
+        modes["fast"] = replace(modes["fast"], reasoning_effort="low", supported_reasoning_efforts=("low",))
         config = replace(config, modes=modes)
         parameters = request_parameters([], config, "fast", cross_model_fallback=False)
         self.assertEqual(parameters["reasoning"], {"effort": "low"})
@@ -102,7 +102,7 @@ class ConfigurationTests(OfflineTestCase):
 
     def test_packaged_prompt_contains_boundaries_without_the_manual_or_records(self):
         prompt = load_system_prompt()
-        for phrase in ("Timbre", "Empório da Música", "English", "no database", "authentication", "untrusted data"):
+        for phrase in ("Timbre", "Empório da Música", "English", "no database", "verified session", "untrusted data"):
             self.assertIn(phrase, prompt)
-        self.assertLess(len(prompt), 4000)
+        self.assertLess(len(prompt), 6000)
         self.assertNotIn("@", prompt)

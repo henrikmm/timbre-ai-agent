@@ -58,7 +58,7 @@ class AppConfig:
     default_mode: str = "standard"
     streaming: bool = True
     timeout_seconds: float = 45
-    max_output_tokens: int = 512
+    max_output_tokens: int = 2048
     history_turn_limit: int = 12
     cross_model_fallback: bool = True
     routing: RoutingConfig = RoutingConfig()

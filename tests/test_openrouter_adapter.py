@@ -14,7 +14,7 @@ from llm_support import OfflineTestCase
 
 
 SYNTHETIC_KEY = "synthetic-fixture-not-a-credential"
-MODEL = "openai/gpt-oss-120b"
+MODEL = "reflection/beam-1.0-501b-a23b"
 
 
 def chunk(content=None, *, finish=None, **extras):

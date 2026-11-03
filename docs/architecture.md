@@ -156,8 +156,11 @@ Structured specifications remain source values rather than inferred repairs.
 
 Financial calculations derive product prices from SQLite and reviewed rules from
 the local policy catalog. Decimal values serialize as strings; discount stacking
-is prevented. Missing campaign audience/validity/priority and conflicting installment
-wording remain explicit constraints. Calculators do not authorize payment, a
+is prevented. The detailed installment schedule, lowest non-stacked PIX option,
+active-offer flags, contact alternatives, and inclusive local freight threshold are
+adopted demonstration decisions. A source-derived resolved projection accompanies
+raw policy evidence without changing it; see ADR-010. Original source limitations
+remain in engineering material rather than repetitive customer disclaimers. Calculators do not authorize payment, a
 reservation, a policy exception, or a transaction. Historical order tracking is
 snapshot information, not a live carrier query.
 
@@ -168,8 +171,8 @@ commits, technical reports, and submission explanations use English. Original
 filenames, CSV values, and extracted policy headings/bodies retain Portuguese;
 English metadata surrounds the source content.
 
-Phase 3A uses English customer responses by default as explicitly requested by
-its brief, superseding the Phase 2 pt-BR default for this phase. Portuguese source
+Phase 3B keeps all static CLI/web labels in English and uses the shared system
+prompt to follow the customer's language or explicit preference. Portuguese source
 policy text and CSV values remain unchanged. Scenario titles, expected behavior,
 technical annotations, and translations use English. Synthetic tests and bounded
 live smoke findings are labeled separately; neither constitutes the Phase 4
@@ -177,7 +180,11 @@ formal evaluation suite.
 
 ## Deliberate exclusions
 
-No LangChain/LangGraph, embeddings, vector store, API server, web UI, channel
+No LangChain/LangGraph, embeddings, vector store, separate API server, channel
 integration, production authentication system, commercial transaction processing,
 or administrative system is added. Conversation history remains in memory only.
-Phase 3B UI and Phase 4 systematic evaluation are separate future work.
+Phase 3B's local Streamlit UI calls the existing conversation engine directly.
+Its per-session display records never supply model history; only the backend owns
+committed tool-call groups. Views do not change authorization. See
+[ADR-009](decisions/009-streamlit-presentation.md). Phase 4 systematic evaluation
+remains future work.

@@ -5,20 +5,21 @@ fictional Brazilian musical instrument store, developed for Artefact's AI Engine
 challenge. Phase 1 provides reproducible SQLite data, source-linked store policies,
 and controlled read interfaces. Phase 2 adds an observable OpenRouter conversation
 engine and terminal CLI. Phase 3A connects that engine to controlled business tools
-and structured execution traces. Offline tests need no key or external API.
+and structured execution traces. Phase 3B adds a local Streamlit chat over the same
+engine. Offline tests need no key or external API.
 
 **Implemented:** streaming conversations, both configured model modes, bounded
 transactional history, six read-only business tools, deterministic payment
-calculations, deny-by-default order access, private metrics, and structured traces.
-The backend and existing CLI are the scope of Phase 3A; there is no web interface.
-See the [Phase 3A operation and validation record](docs/phase3a.md) for capabilities,
+calculations, deny-by-default order access, private metrics, structured traces,
+and Customer/Developer web views. See the [Phase 3B guide](docs/phase3b.md) for the
+interface and streaming diagnosis, and the [Phase 3A record](docs/phase3a.md) for backend capabilities,
 reproduction commands, and the distinction between offline and live evidence.
 
 Engineering documentation, code, tests, and commit messages use English. Original
-CSV values and extracted policy text remain Portuguese. Phase 3A responds in
-English by default, as required by its implementation brief; this supersedes the
-Phase 2 pt-BR default for this phase. Customer-requested Portuguese can still be
-used. Scenario explanations and technical annotations remain English.
+CSV values and extracted policy text remain Portuguese. Static CLI/web labels use
+English. The shared system prompt follows the customer's language, including
+natural Brazilian Portuguese and English, or an explicit language preference.
+Scenario explanations and technical annotations remain English.
 
 ## Requirements and installation
 
@@ -30,6 +31,7 @@ used. Scenario explanations and technical annotations remain English.
   Loading prepared JSON needs no PDF dependency.
 - `setuptools>=68` is an installation/build dependency, not a runtime dependency.
   Initial editable installation may download it.
+- The optional web extra pins **Streamlit 1.66.0**. The CLI remains usable without it.
 
 Run commands from the repository root:
 
@@ -51,6 +53,8 @@ PYTHONPATH=src python3 -m unittest discover -s tests -v
 
 Phase 2 SDK tests still require the pinned runtime dependencies to be installed.
 They do not need a key and block socket connections for LLM tests.
+Install `.[web]` to include the focused Streamlit AppTest checks; otherwise those
+checks are explicitly skipped.
 
 Install Poppler if `pdftotext -v` is unavailable:
 
@@ -90,7 +94,7 @@ behavior, or API cost. Live findings are recorded separately in the
 | `/help` | List commands |
 | `/mode` | Show current requested mode/model |
 | `/mode standard` | Select `deepseek/deepseek-v4.1-flash-1017` with default routing |
-| `/mode fast` | Select `openai/gpt-oss-120b` with latency-prioritized routing |
+| `/mode fast` | Select `reflection/beam-1.0-501b-a23b` with latency-prioritized routing |
 | `/clear` | Reset history, keeping system instructions/session statistics |
 | `/stats` | Show observed session metrics and cost coverage |
 | `/debug on`, `/debug off` | Enable/disable sanitized execution details |
@@ -107,6 +111,85 @@ actual-model differences are recorded and announced. The `[tools]` table adds
 local database/policy paths and bounded execution limits. See the
 [Phase 3A guide](docs/phase3a.md); the [Phase 2 guide](docs/phase2.md) records the
 original provider configuration and historical validation procedure.
+
+## Local web interface
+
+Use the same prepared snapshot and private `.env` as the CLI. From the repository
+root, with the virtual environment active:
+
+```bash
+python -m pip install -e '.[web]'
+streamlit run app.py
+```
+
+Open [the local interface](http://127.0.0.1:8501). The versioned Streamlit config
+binds to loopback, disables usage telemetry, and selects a charcoal/teal dark theme.
+The interface is intended for a local demonstration. It has no production login
+or deployment controls; do not expose it as an unauthenticated public service.
+
+The server chooses its presentation at startup. There is no Customer/Developer
+switch in the page and URL parameters cannot enable diagnostics:
+
+```bash
+# Customer (default), on port 8501
+streamlit run app.py
+# Developer, optionally alongside Customer on another port
+TIMBRE_WEB_VIEW=developer streamlit run app.py --server.port 8502
+```
+
+Customer shows native chat, streaming text, Standard/Fast response choices, and
+**New chat**. Model selection preserves context; reset clears visible/model history
+and pending attempts while retaining session metrics. Internal model IDs, technical
+status, language-adaptation slogans, and blanket data warnings are absent. Static
+interface labels remain English. Markdown escapes literal `R$` currency markers
+for display without rewriting the recorded response. No product images or invented
+product cards are added.
+
+Developer receives the same engine's sanitized events **during execution** through
+`Conversation.send(on_event=...)`. A live activity panel shows catalog/policy/payment
+calls, in-progress/completed/denied states, result counts, sources, and durations.
+It summarizes actual returns; it does not expose raw tool result bodies. Detailed
+per-turn metrics and expandable events remain below the conversation. No SQL,
+private rows, system prompt, hidden reasoning, identity override, or extra business
+permission is exposed. Both servers remain unauthenticated local demonstrations;
+private order access is still denied by the backend.
+
+End-to-end latency includes metadata lookup; answer-available latency and individual
+operation times are identified separately. Missing cost/tokens/provider values use
+`N/A`, with cost subtotals and coverage labelled explicitly. Nested event durations
+overlap and must not be summed into customer wait time.
+
+The web app calls `Conversation.send(on_text=..., on_event=...)` exactly once per submitted turn.
+`st.session_state` holds that backend instance, presentation records, pending input,
+model selection, startup view, and returned trace references. Display records never become
+a second LLM message history. Controls are disabled while a request executes.
+Failed partial text is labelled incomplete, kept for inspection, and excluded
+from backend history. **Retry last message** makes a separate explicit attempt;
+it never concatenates responses or retries automatically. Provider/network failures,
+deadlines, token limits, and tool limits can still interrupt a response.
+
+The shared output budget is now **2,048 tokens per model call**, including reasoning
+and tool-call output. This corrects an observed 512-token truncation; it does not
+guarantee completion. See the [diagnosis and validation record](docs/phase3b.md).
+
+For trusted custom paths/settings, set `TIMBRE_CONFIG` to a complete TOML file and
+optionally `TIMBRE_ENV_FILE` to a private dotenv path before launch. They are read
+at session creation; reload the page after changing them. A browser reload/new tab
+starts a new in-memory session. Closing/restarting the server loses chat history;
+only sanitized local metrics/events persist. Developer activity is streamed; final
+metrics and the detailed trace are shown after execution. Provider latency and
+model answer quality can still vary. Fast now uses Beam 1.0; see the dated
+[model-selection evidence](docs/fast-model-selection.md) and
+[refinement validation](docs/phase3b-refinement.md).
+
+The adopted [customer service decisions](docs/decisions/010-customer-service-decisions.md)
+resolve contact alternatives, installment tiers, the local free-shipping boundary,
+return channels, campaign selection, and product field precedence. The backend
+returns resolved policy data alongside source evidence; original CSVs and Portuguese
+policy text are unchanged. Customer replies give the useful conditions/next step
+without narrating internal discrepancies. Source limitations and production handoff
+stay in engineering documentation; unsupported actions and failed lookups still
+receive truthful, concise answers.
 
 ## Observability and benchmarking
 
@@ -307,6 +390,7 @@ src/timbre/
   conversation.py            # bounded transactional in-memory turns
   observability.py           # per-turn metrics, typed traces, private JSONL
   cli.py, __main__.py         # terminal presentation and entry point
+  web.py, presentation.py    # session display state and shared static errors
   benchmark.py               # controlled scenarios and honest reports
   llm/                       # provider-neutral tool deltas and official SDK adapter
   tools/                     # allowlist, validation, business reads and exact payments
@@ -321,6 +405,8 @@ src/timbre/
     extraction.py            # local PDF-to-section preparation
     policy_loader.py         # catalog validation and topic retrieval
 scripts/                     # preparation, import, validation, benchmark entry point
+app.py                       # native Streamlit chat and sanitized trace presentation
+.streamlit/config.toml       # local-only server and dark theme
 tests/
   fixtures/                  # synthetic CSVs and policy JSON
   support.py                 # isolated test-session simulation
@@ -356,12 +442,14 @@ replacement; specialized read repositories; fail-closed private access; and loca
 JSON policies instead of embeddings; a small official SDK adapter; transactional
 conversation history; and content-free observability. No agent framework is needed.
 
-**Uncertainties:** conflicting contacts and installment wording, an undefined
-shipping threshold boundary, absent campaign dates, mismatched product fields,
-and historical totals differing from today's catalog. These remain visible in the
-[review](docs/policy_review.md), with detailed source values only in ignored
-`knowledge/policy_notes.md`. No source is silently corrected. Legal/compliance
-statements remain source statements, not independently verified conclusions.
+**Source issues and adopted decisions:** contacts, installment wording, freight
+threshold equality, absent campaign dates, and conflicting product fields are
+recorded in the [review](docs/policy_review.md). The owner-authorized
+[decision register](docs/decisions/010-customer-service-decisions.md) defines the
+demonstration's service behavior. Detailed source values stay in ignored
+`knowledge/policy_notes.md`; no original source is corrected. Historical charges,
+real contact deliverability, live campaign data, and legal/compliance claims remain
+production verification matters.
 
 ## Security and publication
 
@@ -395,9 +483,10 @@ outside this phase.
 ## Limits and next steps
 
 The local snapshot is historical business data, not live inventory or a transport
-integration. Campaign flags do not establish dates or customer eligibility. Policy
-conflicts and missing fields remain visible; payment results cannot authorize a
-sale, reservation, charge, refund, or policy exception. Initial Fast-mode return
+integration. Active campaign flags are adopted as the demonstration offer catalog,
+not proof of real-world validity or eligibility. Internal source issues remain
+documented; payment results cannot authorize a sale, reservation, charge, refund,
+or policy exception. Initial Fast-mode return
 and payment checks reached a tool but timed out at the default 45-second interaction
 budget; see the validation record before assuming this budget fits every workflow. Production authentication
 is absent and public CLI sessions cannot retrieve private orders.
@@ -405,11 +494,11 @@ is absent and public CLI sessions cannot retrieve private orders.
 Model tool selection and answer quality remain probabilistic; backend validation,
 read-only queries, calculation, and authorization provide independent controls.
 Context and trace buffers are bounded and local, with no persistent customer
-history. This phase adds no web/API/WhatsApp interface, inventory mutation,
+history. This phase adds no separate API/WhatsApp interface, inventory mutation,
 transaction processing, or formal quality evaluation suite.
 
-Phase 3B may add a minimal interface over these actual trace events. Phase 4 may
-add systematic evaluation. Neither phase starts automatically. Before real customer
+Phase 3B provides a local Streamlit interface over these actual trace events. Phase 4
+systematic evaluation has not started. Before real customer
 use, resolve the production data-processing, authentication, retention, and policy
 requirements in the [Phase 3A guide](docs/phase3a.md).
 
@@ -418,7 +507,8 @@ requirements in the [Phase 3A guide](docs/phase3a.md).
 OpenAI Codex was used to inspect local materials and the existing implementation,
 implement/review Phase 1 data and policy code, verify public SDK/model documentation,
 build the conversation/CLI/observability layers, implement Phase 3A function
-calling and controlled business tools, create synthetic tests, run validation,
+calling and controlled business tools, add the Streamlit presentation and streaming
+diagnostics, create synthetic tests, run validation,
 and write the README and ADRs. The project owner
 supplied scope, security boundaries, model choices, and language conventions.
 No agent framework was added to the application. Automated and live evidence

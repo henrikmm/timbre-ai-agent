@@ -135,10 +135,10 @@ class ToolTests(DatabaseTestCase):
         self.assertEqual([row["promotion_id"] for row in data["promotions"]], [1, 5])
         self.assertEqual(data["promotions"][0]["promotional_price_brl"], "404.91")
         self.assertFalse(data["discounts_stack"])
-        self.assertTrue(all(not row["eligibility_confirmed"] for row in data["promotions"]))
+        self.assertTrue(all(row["eligible_under_service_policy"] for row in data["promotions"]))
         self.assertEqual(self.execute("get_active_promotions", {"product_id": 102})["status"], "empty")
 
-    def test_payment_exact_sums_nonstacking_and_disputed_minima(self):
+    def test_payment_exact_sums_nonstacking_and_resolved_minima(self):
         data = self.execute("calculate_payment_options", {"product_id": 101, "installments": 3})["data"]
         self.assertFalse(data["live_quote_confirmed"])
         self.assertFalse(data["checkout_supported"])
@@ -151,8 +151,8 @@ class ToolTests(DatabaseTestCase):
             self.assertEqual(sum(Decimal(amount) for amount in plan["installment_amounts_brl"]), Decimal("449.90"))
         self.assertTrue(data["requested_option"]["available"])
         disputed = self.execute("calculate_payment_options", {"product_id": 101, "installments": 5})["data"]["requested_option"]
-        self.assertFalse(disputed["available"])
-        self.assertEqual(disputed["reason"], "policy_confirmation_required")
+        self.assertTrue(disputed["available"])
+        self.assertIsNone(disputed["reason"])
         excessive = self.execute("calculate_payment_options", {"product_id": 101, "installments": 10})["data"]["requested_option"]
         self.assertEqual(excessive["reason"], "installment_limit_exceeded")
         pix_six = self.execute("calculate_payment_options", {"product_id": 101, "payment_method": "pix", "installments": 6})["data"]["requested_option"]
@@ -169,10 +169,10 @@ class ToolTests(DatabaseTestCase):
 
     def test_installment_boundaries_and_remainder_allocation(self):
         rules = PaymentRules.from_catalog(PolicyCatalog(self.policies))
-        self.assertTrue(rules.plan(Decimal("180.00"), 2)["available"])
-        disputed = rules.plan(Decimal("179.99"), 2)
-        self.assertEqual(disputed["installment_amounts_brl"], [Decimal("90.00"), Decimal("89.99")])
-        self.assertEqual(disputed["reason"], "policy_confirmation_required")
+        self.assertTrue(rules.plan(Decimal("60.00"), 2)["available"])
+        disputed = rules.plan(Decimal("59.99"), 2)
+        self.assertEqual(disputed["installment_amounts_brl"], [Decimal("30.00"), Decimal("29.99")])
+        self.assertEqual(disputed["reason"], "minimum_installment_not_met")
         self.assertTrue(rules.plan(Decimal("810.00"), 9)["available"])
         self.assertEqual(rules.plan(Decimal("809.99"), 9)["reason"], "minimum_installment_not_met")
         plan = rules.plan(Decimal("450.01"), 3)

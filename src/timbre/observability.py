@@ -105,6 +105,8 @@ class TraceEvent:
     result_count: int | None = None
     status: str | None = None
     error_category: str | None = None
+    finish_reason: str | None = None
+    http_status: int | None = None
     schema_version: int = 1
 
     def to_dict(self) -> dict:
@@ -253,7 +255,7 @@ class Observer:
         self._events = deque(maxlen=2000)
         self.persistence_failed = False
 
-    def trace(self, event: TraceEvent) -> None:
+    def trace(self, event: TraceEvent) -> TraceEvent:
         # Events contain backend-owned tags and executor-sanitized metadata only.
         safe = deepcopy(event)
         if not self.config.record_latency:
@@ -262,6 +264,7 @@ class Observer:
         if self.config.enabled:
             path = Path(self.config.jsonl_path)
             self._persist(path.with_name(path.stem + ".traces.jsonl"), safe.to_dict())
+        return deepcopy(safe)
 
     def get_events(self, turn_id: str | None = None) -> list[TraceEvent]:
         """Return isolated snapshots, bounded to the latest 2,000 session events."""

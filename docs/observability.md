@@ -143,6 +143,7 @@ provides the latest turn trace for CLI/future interface consumers.
 | `source` | Logical data source such as SQLite or policy catalog; no filesystem path or raw SQL |
 | `duration_seconds`, `result_count` | Monotonic execution measurement and safe count; null when not applicable |
 | `status`, `error_category` | Stable execution outcome without exception messages or result bodies |
+| `finish_reason`, `http_status` | Optional per-model-call terminal reason and HTTP code for interruption diagnosis (Phase 3B additive fields) |
 
 Lifecycle events include `request_started`, `llm_request_started`,
 `llm_request_completed`, `tool_call_requested`, `arguments_validated`,
@@ -158,7 +159,13 @@ prompts, replies, reasoning, free-text searches, private row values, or secrets.
 The CLI uses these actual events for `/trace` and optional `/debug on` output;
 `/debug off` returns to concise presentation. Authorization is identical in every
 presentation mode. The typed API is independent of terminal printing and can be
-consumed by Phase 3B without reconstructing events from text.
+consumed by Phase 3B without reconstructing events from text. The Streamlit
+Developer server consumes these sanitized events through `Conversation.send(on_event=...)`
+as they occur, then uses `TurnResult.events` and the recorded metrics for details.
+The callback receives an isolated copy after collection preferences apply. It never reads global JSONL
+files or shows another browser session's data. Customer view does not render
+these diagnostics. Missing final terminal reasons remain null rather than
+inheriting a previous model call's `tool_calls` reason.
 
 Sources: [router metadata](https://openrouter.ai/docs/guides/features/router-metadata),
 [generation metadata](https://openrouter.ai/docs/api/api-reference/generations/get-generation),

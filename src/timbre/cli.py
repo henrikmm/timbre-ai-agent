@@ -8,22 +8,23 @@ from typing import TextIO
 from timbre.config import ConfigurationError, load_config
 from timbre.conversation import Conversation
 from timbre.llm.openrouter import OpenRouterClient
+from timbre.presentation import response_error
 
 
-HELP = """/help              Exibir comandos
-/mode              Exibir modo e modelo atuais
-/mode standard     Selecionar o modo padrão
-/mode fast         Selecionar o modo rápido
-/clear             Limpar o histórico (mantém as estatísticas da sessão)
-/stats             Exibir métricas da sessão, sem conteúdo da conversa
+HELP = """/help              Show available commands
+/mode              Show current mode and model
+/mode standard     Select Standard mode
+/mode fast         Select Fast mode
+/clear             Clear history (keep session statistics)
+/stats             Show session metrics without conversation content
 /debug on          Show sanitized execution traces after each turn
 /debug off         Hide automatic execution traces
 /trace             Show the latest turn's structured execution trace
-/exit              Encerrar"""
+/exit              Exit"""
 
 
 def _number(value, suffix="", precision=3):
-    return "indisponível" if value is None else f"{value:.{precision}f}{suffix}"
+    return "N/A" if value is None else f"{value:.{precision}f}{suffix}"
 
 
 def run_chat(conversation: Conversation, *, input_fn=input, output: TextIO | None = None) -> None:
@@ -33,7 +34,7 @@ def run_chat(conversation: Conversation, *, input_fn=input, output: TextIO | Non
         print(text, file=output, flush=True)
 
     def show_mode():
-        say(f"Modo: {conversation.mode} | Modelo solicitado: {conversation.config.modes[conversation.mode].model}")
+        say(f"Mode: {conversation.mode} | Requested model: {conversation.config.modes[conversation.mode].model}")
 
     def show_trace():
         events = conversation.get_trace()
@@ -43,20 +44,20 @@ def run_chat(conversation: Conversation, *, input_fn=input, output: TextIO | Non
             say(json.dumps(event.to_dict(), ensure_ascii=True, allow_nan=False))
 
     debug = False
-    say("Timbre | Empório da Música\nDigite /help para ver os comandos.")
+    say("Timbre | Empório da Música\nType /help to see available commands.")
     show_mode()
     while True:
         try:
-            text = input_fn("Você: ").strip()
+            text = input_fn("You: ").strip()
         except (EOFError, KeyboardInterrupt):
-            say("\nSessão encerrada.")
+            say("\nSession ended.")
             return
         if not text:
             continue
         if text.startswith("/"):
             parts = text.split()
             if parts == ["/exit"]:
-                say("Até mais!")
+                say("Goodbye!")
                 return
             if parts == ["/help"]:
                 say(HELP)
@@ -65,28 +66,28 @@ def run_chat(conversation: Conversation, *, input_fn=input, output: TextIO | Non
                     try:
                         conversation.set_mode(parts[1])
                     except ValueError:
-                        say("Use /mode standard ou /mode fast.")
+                        say("Use /mode standard or /mode fast.")
                         continue
-                    say("Histórico preservado. A troca de modelo pode mudar a interpretação do contexto.")
+                    say("History preserved. Switching models may affect context interpretation.")
                 show_mode()
             elif parts == ["/clear"]:
                 conversation.clear()
-                say("Histórico limpo. As instruções do Timbre foram preservadas.")
+                say("History cleared. Timbre instructions were preserved.")
             elif parts == ["/stats"]:
                 stats = conversation.observer.summary()
-                say(f"Requisições: {stats['requests']} | Concluídas: {stats['successful_requests']}"
-                    f" | Timeouts: {stats['timeouts']} | Streams incompletos: {stats['incomplete_streams']}")
-                say(f"TTFT mediano: {_number(stats['median_ttft_seconds'], ' s')}"
-                    f" | Latência mediana: {_number(stats['median_total_latency_seconds'], ' s')}"
+                say(f"Requests: {stats['requests']} | Completed: {stats['successful_requests']}"
+                    f" | Timeouts: {stats['timeouts']} | Incomplete streams: {stats['incomplete_streams']}")
+                say(f"Median TTFT: {_number(stats['median_ttft_seconds'], ' s')}"
+                    f" | Median latency: {_number(stats['median_total_latency_seconds'], ' s')}"
                     f" | P95: {_number(stats['p95_total_latency_seconds'], ' s')}")
-                say(f"Custo observado: {_number(stats['observed_cost_usd'], ' USD', 6)}"
-                    f" ({stats['cost_known_requests']}/{stats['requests']} requisições com custo informado)")
+                say(f"Observed cost: {_number(stats['observed_cost_usd'], ' USD', 6)}"
+                    f" ({stats['cost_known_requests']}/{stats['requests']} requests with reported cost)")
                 say(f"Cost coverage: {stats['cost_known_model_calls']}/{stats['model_calls']} model calls;"
                     " partial observations are a subtotal.")
-                say(f"Tokens informados (entrada/saída): {stats['input_tokens']} / {stats['output_tokens']}"
-                    f" | Vazão: {_number(stats['mean_output_tokens_per_second'], ' tokens/s')}")
-                say(f"Fallbacks de modelo: {stats['fallback_occurrences']}"
-                    f" | Provedores informados: {', '.join(stats['providers']) or 'indisponível'}")
+                say(f"Reported tokens (input/output): {_number(stats['input_tokens'], precision=0)} / {_number(stats['output_tokens'], precision=0)}"
+                    f" | Throughput: {_number(stats['mean_output_tokens_per_second'], ' tokens/s')}")
+                say(f"Model fallbacks: {stats['fallback_occurrences']}"
+                    f" | Reported providers: {', '.join(stats['providers']) or 'N/A'}")
                 say(f"Model calls: {stats['model_calls']} | Tool calls: {stats['tool_calls']}"
                     f" | Tool failures: {stats['tool_failures']} | Authorization denials: {stats['authorization_denials']}")
             elif parts in (["/debug", "on"], ["/debug", "off"]):
@@ -95,7 +96,7 @@ def run_chat(conversation: Conversation, *, input_fn=input, output: TextIO | Non
             elif parts == ["/trace"]:
                 show_trace()
             else:
-                say("Comando inválido. Digite /help.")
+                say("Invalid command. Type /help.")
             continue
         print("Timbre: ", end="", file=output, flush=True)
         result = conversation.send(text, on_text=lambda chunk: print(chunk, end="", file=output, flush=True))
@@ -104,18 +105,13 @@ def run_chat(conversation: Conversation, *, input_fn=input, output: TextIO | Non
         if debug:
             show_trace()
         if metrics.status != "success":
-            if metrics.status == "interrupted":
-                say("Resposta interrompida. A tentativa não foi salva no histórico.")
-            elif metrics.error_category == "timeout":
-                say("O tempo de espera terminou. A tentativa não foi salva no histórico.")
-            else:
-                say("Não consegui concluir a resposta. A tentativa não foi salva no histórico. Você pode tentar novamente.")
+            say(response_error(metrics))
         if metrics.fallback_used:
-            say(f"Aviso: o modelo alternativo {metrics.actual_model} respondeu a esta tentativa.")
+            say(f"Notice: fallback model {metrics.actual_model} responded to this attempt.")
         elif metrics.actual_model is None:
-            say("Aviso: o serviço não informou o modelo efetivamente usado.")
+            say("Notice: the service did not report the actual model.")
         if conversation.observer.persistence_failed:
-            say("Aviso: não foi possível gravar as métricas locais; /stats mantém os dados desta sessão.")
+            say("Notice: local metrics could not be saved; /stats retains this session data.")
 
 
 def main(argv=None) -> int:
