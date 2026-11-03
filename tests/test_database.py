@@ -1,6 +1,7 @@
 """Import fidelity, exact values, integrity constraints, and atomic replacement."""
 
 import csv
+from contextlib import closing
 from decimal import Decimal
 import hashlib
 import sqlite3
@@ -134,12 +135,12 @@ class ImportTests(DatabaseTestCase):
 
     def test_unrelated_database_is_not_rebuilt(self):
         unrelated = self.directory / "unrelated.db"
-        with sqlite3.connect(unrelated) as connection:
+        with closing(sqlite3.connect(unrelated)) as connection, connection:
             connection.execute("CREATE TABLE unrelated (value TEXT)")
             connection.execute("INSERT INTO unrelated VALUES ('synthetic retained value')")
         with self.assertRaises(ImportValidationError):
             import_csvs(self.raw, unrelated)
-        with sqlite3.connect(unrelated) as connection:
+        with closing(sqlite3.connect(unrelated)) as connection, connection:
             self.assertEqual(connection.execute("SELECT value FROM unrelated").fetchone()[0],
                              "synthetic retained value")
 

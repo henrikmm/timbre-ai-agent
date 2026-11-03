@@ -9,13 +9,13 @@ or open questions, not corrected source facts or legal conclusions.
 
 | Issue and source | Impact | Handling / proposed interpretation | Clarification |
 |---|---|---|---|
-| Telephone/WhatsApp differs: cover, §1.2 vs §7 | Could direct a customer to the wrong channel | Retain both; no silently chosen official number | Confirm primary/alternative channels |
+| Telephone/WhatsApp differs: cover, §1.2 vs §7 | Could direct a customer to the wrong channel | Retain both in retrieval; no silently chosen official number | Confirm primary/alternative channels |
 | Email spelling differs: cover vs §1.2 | Normalizing it could change the destination | Preserve spelling and references | Confirm official email; delivery was not tested |
-| Payment table vs installment minima: §§3,3.1 p.3 | Could approve/reject a wrong plan | Retrieve both; no calculator enabled | Confirm precedence and short-plan exception meaning |
+| Payment table vs installment minima: §§3,3.1 p.3 | Could approve/reject a wrong plan | Retrieve both; calculator accepts only plans meeting both minima and flags disputed plans | Confirm precedence and short-plan exception meaning |
 | Shipping wording leaves exact threshold uncovered: §5.1 p.4 | Equality has no explicit fee | Do not invent a boundary | Confirm exact-equality handling |
 | Exchange exclusions vs withdrawal/defect/warranty: §§4.1–4.4,8 | Blanket exclusion could incorrectly resolve a case | Retrieve relevant clauses and escalate | Confirm precedence and qualified interpretation |
 | Campaigns lack dates/audience fields: promotions CSV; §§6.1–6.2 | Name/month does not prove validity or public scope | Use flag and sellability as snapshot evidence only | Confirm validity windows and exclusivity labels |
-| Multiple campaign rows per product | Could encourage unsupported stacking/selection | No final discount/stacking calculation | Confirm winner/priority rule |
+| Multiple campaign rows per product | Could encourage unsupported stacking/selection | Return separate candidate amounts; no automatic winner or stacking | Confirm winner/priority rule |
 | Positive stock with unavailable status: products CSV; §7.3 | Stock alone could imply permission to sell | Require exact `active` and positive stock | Confirm any exceptions |
 | Historical totals differ from current catalog sums: three related CSVs | Could falsely claim a pricing error | Preserve totals; two differences are diagnostics | Historical unit prices, freight, discounts are absent |
 | Product names/descriptions/JSON disagree: products CSV | Could assert wrong brand/features | Preserve fields without inferred repair | Confirm authoritative catalog values |
@@ -25,20 +25,22 @@ or open questions, not corrected source facts or legal conclusions.
 
 ## Deterministic rules and textual knowledge
 
-The manual remains the source of commercial terms. This plan references source
-locations rather than duplicating numeric constants. Before implementing pricing,
-promote reviewed values into one canonical, source-linked rule configuration.
+The manual remains the source of commercial terms. Phase 3A references source
+locations rather than duplicating private numeric constants in public documents.
+The payment calculator parses reviewed source-linked rules from the validated local
+catalog; missing/changed rule shapes fail closed and require staff confirmation.
+Synthetic test rules use deliberately different values.
 
 | Rule / information | Source | Boundary |
 |---|---|---|
 | Sale eligibility | Status, §7.3 | Implemented: exact `active` |
 | Recorded stock availability | Stock, §§6.2,7.3 | Implemented: positive stock; no historical subtraction |
 | Snapshot promotion eligibility | Flag, §6.2 | Implemented: flagged campaign and sellable product |
-| PIX discount and base | §§3,6.2 | Future exact function; numeric value stays in local catalog |
-| Promotion non-cumulativity | §6.2 | Future function must prevent stacking |
-| Competing promotion/PIX choice | §6.2, CSV | Defer until priority/selection/audience is confirmed |
-| Installment counts and minima | §§3,3.1 | Future deterministic eligibility after ambiguity resolution |
-| Minimum installment calculation | §3.1 | Exact cents; check each installment after remainder allocation |
+| PIX discount and base | §§3,6.2 | Implemented exact calculation; numeric value stays in local catalog |
+| Promotion non-cumulativity | §6.2 | Implemented: campaigns and PIX remain separate, never stacked |
+| Competing promotion/PIX choice | §6.2, CSV | Separate candidates with confirmation requirement; no automatic priority |
+| Installment counts and minima | §§3,3.1 | Conservative intersection of minima; disputed plans require confirmation |
+| Minimum installment calculation | §3.1 | Implemented exact cents; check every installment after remainder allocation |
 | Mixed payments | §3.1 | Future eligibility after boundary clarification |
 | Shipping fees/quotes | §§5.1,5.2 | Future deterministic logic after equality and dimensions are resolved |
 | Hours, scope, and tone | §§1,2,7.1 | Textual; future holiday calculations need a trusted calendar |

@@ -2,6 +2,10 @@
 /Material_suporte/
 /data/
 /local/
+/logs/
+/benchmark-results/
+*.jsonl
+!tests/fixtures/*.synthetic.jsonl
 /knowledge/policies.json
 /knowledge/policy_notes.md
 /knowledge/*.txt

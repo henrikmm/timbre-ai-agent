@@ -4,11 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "timbre-ai-agent"
-version = "0.1.0"
-description = "Data, knowledge, and controlled-access foundation for Timbre"
+version = "0.2.0"
+description = "Observable conversational assistant with controlled-access data foundations"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["openrouter==1.3.107", "python-dotenv==1.2.2"]
+
+[project.scripts]
+timbre = "timbre.cli:main"
+
+[tool.setuptools.package-data]
+timbre = ["resources/*.toml", "resources/*.md", "resources/*.json"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

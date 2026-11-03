@@ -48,7 +48,8 @@ class CatalogRepository:
             )]
 
     def search_products(self, query: str = "", *, category_id: int | None = None,
-                        max_price_brl=None, available_only: bool = True,
+                        category_ids: list[int] | None = None, brand: str | None = None,
+                        min_price_brl=None, max_price_brl=None, available_only: bool = True,
                         limit: int = 20, offset: int = 0) -> list[dict]:
         _pagination(limit, offset)
         if not isinstance(query, str) or len(query) > 300:
@@ -64,6 +65,22 @@ class CatalogRepository:
         if category_id is not None:
             conditions.append("p.category_id = ?")
             parameters.append(_positive_id(category_id))
+        if category_ids is not None:
+            if not category_ids:
+                return []
+            conditions.append("p.category_id IN (" + ",".join("?" for _ in category_ids) + ")")
+            parameters.extend(_positive_id(value) for value in category_ids)
+        if brand is not None:
+            if not isinstance(brand, str) or not brand.strip() or len(brand) > 100:
+                raise ValueError("brand must be nonempty text of at most 100 characters")
+            # The source has no brand column. Match name tokens, never infer a
+            # brand from potentially conflicting descriptions/specifications.
+            literal = search_key(brand.strip()).replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+            conditions.append("(' ' || search_key(p.name) || ' ') LIKE ? ESCAPE '\\'")
+            parameters.append(f"% {literal} %")
+        if min_price_brl is not None:
+            conditions.append("p.price_cents >= ?")
+            parameters.append(to_cents(min_price_brl))
         if max_price_brl is not None:
             conditions.append("p.price_cents <= ?")
             parameters.append(to_cents(max_price_brl))
@@ -73,12 +90,12 @@ class CatalogRepository:
         with connect_database(self._database_path) as connection:
             rows = connection.execute(
                 f"""SELECT p.product_id, p.name, p.category_id, c.name AS category_name,
-                           p.price_cents, p.stock_quantity, p.status
+                           p.price_cents, p.stock_quantity, p.status, p.description
                     FROM products p JOIN categories c ON c.category_id = p.category_id
                     WHERE {where} ORDER BY p.product_id LIMIT ? OFFSET ?""",
                 [*parameters, limit, offset],
             )
-            return [_product(row) for row in rows]
+            return [{**_product(row), "description": row["description"]} for row in rows]
 
     def get_product_details(self, product_id: int) -> dict | None:
         with connect_database(self._database_path) as connection:

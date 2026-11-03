@@ -1,0 +1,46 @@
+# Non-secret application settings. Paths are relative to the working directory.
+[llm]
+default_mode = "standard"
+streaming = true
+timeout_seconds = 45
+max_output_tokens = 512
+history_turn_limit = 12
+cross_model_fallback = true
+
+[tools]
+database_path = "data/store.db"
+policies_path = "knowledge/policies.json"
+max_iterations = 4
+max_calls_per_turn = 12
+
+[llm.modes.standard]
+model = "deepseek/deepseek-v4.1-flash-1017"
+provider_sort = "default"
+# Omit optional reasoning controls until supported efforts are verified for this ID.
+reasoning_effort = "default"
+supported_reasoning_efforts = []
+
+[llm.modes.fast]
+model = "openai/gpt-oss-120b"
+provider_sort = "latency"
+# Provider defaults keep the baseline comparable; low/medium/high are opt-in.
+reasoning_effort = "default"
+supported_reasoning_efforts = ["low", "medium", "high"]
+
+[routing]
+allow_provider_fallbacks = true
+require_parameters = true
+data_collection = "deny"
+zdr = false
+
+[observability]
+enabled = true
+jsonl_path = "local/requests.jsonl"
+record_tokens = true
+record_cost = true
+record_latency = true
+record_provider = true
+store_conversation_content = false
+# At most one lookup after streaming, only if provider or cost is missing.
+generation_metadata = "missing"
+metadata_timeout_seconds = 2
