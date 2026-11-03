@@ -13,8 +13,9 @@ They are observations, not golden replies guaranteed on a later model run.
 | [Privacy boundary](04-privacy-boundary.md) | Real backend authorization denial and no returned private row |
 | [Store and named price](05-store-and-price.md) | Location and catalog/promotion facts, in two independent sessions |
 
-The original Takamine/store questions were also run privately against the supplied
-assessment package; only aggregate outcomes are public. Examples were collected
+The [main video](../docs/assets/timbre-assessment-demo.mp4) separately shows the
+four original assessment questions, using the supplied store snapshot. These five
+text examples remain explicitly synthetic. Examples were collected
 during consolidation, with prompt hashes where available. Later prompt refinements
 and source expansion are recorded in [evaluation](../docs/evaluation.md).
 

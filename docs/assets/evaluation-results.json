@@ -5698,10 +5698,10 @@
       ]
     }
   ],
-  "all_phase4_live_model_calls": 214,
-  "all_phase4_observed_cost_usd": 0.11568971347,
+  "all_phase4_live_model_calls": 225,
+  "all_phase4_observed_cost_usd": 0.12125452406,
   "authorized_model_call_cap": 250,
-  "cost_known_model_calls": 214,
+  "cost_known_model_calls": 225,
   "ui_smoke": {
     "source": "actual_openrouter_ui",
     "dataset": "synthetic",
@@ -5762,10 +5762,10 @@
     "actual_screenshots": 4,
     "actual_conversation_examples": 5,
     "video_recorded": true,
-    "recording_storyboard_prepared": true,
+    "recording_storyboard_prepared": false,
     "readme_rendered_locally": true,
     "github_render_verified": false,
-    "video_file": "docs/assets/timbre-demo.mp4",
+    "video_file": "docs/assets/timbre-assessment-demo.mp4",
     "video_hosting": "versioned repository MP4",
     "video_uploaded_to_external_host": false
   },
@@ -5780,103 +5780,124 @@
   },
   "original_validation_model_calls": 195,
   "original_validation_observed_cost_usd": 0.10739036347,
-  "native_recording": {
-    "source": "native macOS Safari-window recording with live Computer Use interaction",
-    "dataset": "synthetic",
-    "application_revision": "4103de4e0e80af86c16165e961116cf4583949ea",
-    "video": "docs/assets/timbre-demo.mp4",
-    "video_sha256": "621819adb85f26ec4d95e1762c7d177e69d235248e803e86bfeec92d9c16d140",
-    "duration_seconds": 40.033333,
-    "size_bytes": 701118,
-    "encoding": {
-      "codec_name": "h264",
-      "width": 1920,
-      "height": 952,
-      "pix_fmt": "yuv420p",
-      "r_frame_rate": "30/1"
-    },
-    "continuous_recording": true,
-    "playback_speed": 1,
-    "temporal_cuts": false,
-    "spatial_edits": [
-      "crop 104-pixel browser toolbar",
-      "resize to width 1920"
+  "capture_preparation": {
+    "completed_turns": 7,
+    "model_calls": 19,
+    "cost_known_model_calls": 19,
+    "reported_cost_usd": 0.00829935,
+    "note": "Includes preliminary native captures rejected for framing; no quality failure has been rewritten."
+  },
+  "submission_recording": {
+    "source": "User-provided and owner-selected native screen recording",
+    "dataset": "original assessment store snapshot; no private customer data shown",
+    "video": "docs/assets/timbre-assessment-demo.mp4",
+    "poster": "docs/assets/timbre-assessment-demo-poster.jpg",
+    "video_sha256": "787fb07e2725be4f77292d1b85e773ee84097636a6283183609cefaf1b92ad32",
+    "original_mov_sha256": "f10b1e5f15720bc28326410fc8b12d035346325941b404a08c4e598ab310d98b",
+    "original_file_unchanged": true,
+    "duration_seconds": 111.566667,
+    "size_bytes": 5170567,
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1200,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1"
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "r_frame_rate": "0/0"
+      }
     ],
-    "audio": false,
-    "selected_take": {
-      "turns": 2,
-      "model_calls": 5,
-      "tool_calls": 3,
-      "reported_cost_usd": 0.00187875,
+    "audio_preserved": true,
+    "temporal_cuts": false,
+    "playback_speed": 1,
+    "encoding_changes": [
+      "resize to width 1920",
+      "encode video at 30 fps; preserve audio stream"
+    ],
+    "selected_session": {
+      "turns": 4,
+      "model_calls": 9,
+      "tool_calls": 6,
+      "reported_cost_usd": 0.00478245809,
+      "question_topics": [
+        "Available acoustic guitars under budget",
+        "Store address",
+        "Takamine GD20 price",
+        "Change-of-mind returns"
+      ],
+      "explicit_language_request": false,
+      "all_displayed_answers_english": true,
       "outcomes": [
         {
           "status": "success",
           "model": [
-            "reflection/beam-1.0-501b-a23b"
+            "deepseek/deepseek-v4.1-flash-1017"
           ],
           "providers": [
-            "Nebius"
+            "Baidu"
           ],
-          "end_to_end_seconds": 3.8585371660010424,
-          "model_calls": 3,
-          "tool_calls": 2,
-          "authorization_denials": 0,
-          "provider_fallback": false
+          "model_calls": 2,
+          "tool_calls": 1,
+          "cost_usd": 0.0013089203
         },
         {
           "status": "success",
           "model": [
-            "reflection/beam-1.0-501b-a23b"
+            "deepseek/deepseek-v4.1-flash-1017"
           ],
           "providers": [
-            "Nebius"
+            "Baidu"
           ],
-          "end_to_end_seconds": 2.3136163750023115,
           "model_calls": 2,
           "tool_calls": 1,
-          "authorization_denials": 1,
-          "provider_fallback": false
-        }
-      ],
-      "sanitized_tool_execution": [
-        {
-          "tool": "search_products",
-          "status": "success",
-          "result_count": 2,
-          "duration_seconds": 0.003612750006141141
+          "cost_usd": 0.00100142049
         },
         {
-          "tool": "calculate_payment_options",
           "status": "success",
-          "result_count": 1,
-          "duration_seconds": 0.0034311670169699937
+          "model": [
+            "deepseek/deepseek-v4.1-flash-1017"
+          ],
+          "providers": [
+            "Baidu"
+          ],
+          "model_calls": 3,
+          "tool_calls": 2,
+          "cost_usd": 0.00168019211
         },
         {
-          "tool": "get_my_order_status",
-          "status": "authorization_denied",
-          "result_count": 0,
-          "duration_seconds": 0.0009023329766932875
+          "status": "success",
+          "model": [
+            "deepseek/deepseek-v4.1-flash-1017"
+          ],
+          "providers": [
+            "Baidu"
+          ],
+          "model_calls": 2,
+          "tool_calls": 2,
+          "cost_usd": 0.0007919251900000001
         }
-      ],
-      "oracles": {
-        "visible_catalog_prices_and_stock_match_database": true,
-        "visible_best_pix_matches_independent_calculation": true,
-        "private_order_result_count": 0
-      }
-    },
-    "capture_session": {
-      "completed_turns": 7,
-      "model_calls": 19,
-      "cost_known_model_calls": 19,
-      "reported_cost_usd": 0.00829935,
-      "note": "Includes preliminary native captures rejected for framing; no quality failure has been rewritten."
+      ]
     },
     "review": {
       "full_decode_passed": true,
-      "frames_inspected_across_entire_duration": true,
-      "private_desktop_or_other_tabs_visible": false,
-      "original_customer_data_visible": false,
+      "frames_reviewed_across_full_duration": true,
+      "showcased_facts_checked_against_original_sources": true,
+      "private_customer_records_visible": false,
       "credentials_visible": false
-    }
+    },
+    "older_video_and_poster_removed_from_current_tree": true,
+    "poster_sha256": "afe0371c3603ba52369f16e12290138290e1a2cafecbad930387f155e596b802",
+    "poster_frame_seconds": 80
+  },
+  "interrupted_recording_attempt": {
+    "completed_turns": 1,
+    "model_calls": 2,
+    "status": "success",
+    "note": "Recording interaction interrupted by the owner after the model turn completed; not part of the selected recording."
   }
 }

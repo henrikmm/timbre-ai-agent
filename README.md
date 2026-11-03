@@ -16,10 +16,10 @@ fictional retailer **Empório da Música**.
 
 </div>
 
-![Timbre running a real product search with synthetic data](docs/assets/product-discovery.jpg)
+[![Watch Timbre answer the four assessment questions](docs/assets/timbre-assessment-demo-poster.jpg)](docs/assets/timbre-assessment-demo.mp4)
 
-<sub>Actual Streamlit interaction · synthetic catalog · 3 November 2026. Prices and stock
-come from real tool execution against the public fixture.</sub>
+<sub><a href="docs/assets/timbre-assessment-demo.mp4">Watch the demonstration (1 min 52 s)</a> ·
+Actual English conversation using the original assessment store snapshot · 3 November 2026.</sub>
 
 ## The problem
 
@@ -48,8 +48,10 @@ Static interface labels and engineering documentation use English.
 ## See it work
 
 The [representative conversations](examples/README.md) identify their dataset,
-actual responses, tool execution and review limits. Public examples use fictional
-records and policies; original assessment outputs remain private.
+actual responses, tool execution and review limits. The five text examples use
+fictional records and policies. The main video uses the original assessment store
+snapshot; supplied files, extracted policy catalogs and private customer records
+are not distributed.
 
 The application requires no original files for the public demonstration. Its tools
 execute real queries and calculations; no chatbot answers are hardcoded. Without
@@ -64,11 +66,16 @@ an inference key, the public tool smoke test still exercises the backend.
 | ![Actual promotion and calculation calls with measured durations](docs/assets/developer-tools.jpg) | ![Actual order-status call denied by backend authorization](docs/assets/privacy-boundary.jpg) |
 | Promotions and exact payment calculations use the shared backend. | An unauthenticated session receives no private order row. |
 
-[![Watch the 40-second live demonstration](docs/assets/timbre-demo-poster.jpg)](docs/assets/timbre-demo.mp4)
+The **[main demonstration](docs/assets/timbre-assessment-demo.mp4)** covers:
 
-**[Watch the live demonstration (MP4)](docs/assets/timbre-demo.mp4)** · 40 seconds ·
-actual typed prompts, streamed answers, catalog/payment tools and a backend-denied
-order lookup. Synthetic data, real inference; no canned answers.
+- Available acoustic guitars under R$1,000.
+- The store address.
+- The Takamine GD20 price and availability.
+- Change-of-mind returns and their conditions.
+
+The questions and answers are in English, without an explicit answer-language
+instruction. These are actual model responses and tool calls, not scripted chatbot
+answers. The recording preserves the interaction's original pace and audio.
 [Recording details](docs/evaluation.md#demonstration-assets-and-live-video).
 
 ## How it works
@@ -105,8 +112,8 @@ and **16/17 Fast** scenario trials; both completed **18/19 turns**. Focused regr
 passed after fixes, while language/paraphrase variability remains documented. These
 figures are execution/fact checks, not a universal answer-accuracy claim.
 
-Offline timings are not model performance,
-and a deterministic tool check is not an overall conversational quality score.
+Offline timings are not model performance, and a deterministic tool check is not
+an overall conversational quality score.
 
 ## Quickstart
 

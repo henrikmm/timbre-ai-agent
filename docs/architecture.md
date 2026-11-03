@@ -145,9 +145,14 @@ quoted price. A calculation is not checkout or a confirmed live commercial quote
 | Standard | `deepseek/deepseek-v4.1-flash-1017` | Default provider balance |
 | Fast | `reflection/beam-1.0-501b-a23b` | Latency priority |
 
+Standard is the cost-conscious default for general support and multi-step tool use.
+Fast offers a lower-latency option; it was quicker but slightly more expensive in
+the initial controlled sample. The comparison informs this configuration without
+establishing a universal model ranking.
+
 Both use the pinned official OpenRouter SDK, tool schemas, streaming and a default
-2,048-token output budget per model call. The budget includes reasoning and tool
-output; a previous 512-token setting caused truncation. Optional sampling/reasoning
+2,048-token output budget per model call. The budget includes reasoning and generated
+tool-call arguments; a previous 512-token setting caused truncation. Optional sampling/reasoning
 controls are omitted unless verified for the configured model and route.
 
 GPT-OSS was an earlier Fast model. The implemented configuration replaced it after
@@ -177,7 +182,9 @@ Test-only identity issuance stays exclusively in `tests/support.py` and integrat
 tests. There is no impersonation control in either interface.
 
 Original CSV/PDF files, extracted policies, databases, detailed reports, logs and keys
-are ignored and owner-only where generated. Public examples use synthetic inputs.
+are ignored and owner-only where generated. Public text examples use synthetic
+inputs; the owner-selected main video shows the original store's public catalog and
+policy answers, with no private customer records.
 External inference sees bounded customer context and relevant tool results; production
 would still require lawful-purpose review, processor contracts, international-transfer
 review, retention/deletion controls, real authentication and abuse protection. This

@@ -62,7 +62,7 @@ explicitly separate. No comprehensive human-scored task-success rate is claimed.
 | Initial E15/E16: account/login or “My orders” flows not implemented by this app | Grounding **1** despite no private disclosure | Explicit no-login guidance; regression inspected, with residual wording variability noted below |
 | Initial E12, both modes: no answer after excessive searches | Helpfulness **0**, tool-path failure | Source-scope lookup guidance; both reruns completed with appropriate redirection |
 | Earlier E10 regression Fast: mixed English/Portuguese | Language **1** | Later focused E10 reply was English with exact cent allocation |
-| Later synthetic UI PIX request: English prompt received Portuguese | Language **0** | Retained as a known limitation; selected English capture explicitly requests English |
+| Later synthetic UI PIX request: English prompt received Portuguese | Language **0** | Retained as a known limitation; a synthetic example explicitly requested English, while the main recording below did not |
 | Selected synthetic payment/return examples | Relevant facts/policy/clarity **2** on inspected content | Exact preserved examples; not statistical accuracy evidence |
 
 General musical advice is distinct from recorded specifications. Unsupported partner
@@ -175,7 +175,8 @@ Executed runs: `phase4-pilot`, `phase4-original-live`, `phase4-original-regressi
 `phase4-language-security-regression`, `phase4-promotion-regression`,
 `phase4-final-language-multitool`, `phase4-public-live`,
 `phase4-public-policy-regression`, `phase4-public-privacy-final`, and final public/original
-offline contracts. Earlier failures were retained. Public originals are aggregate only.
+offline contracts. Earlier failures were retained. Published original-data evaluation
+reports contain aggregates; the separately reviewed recording is described below.
 
 ## Clean-clone reproduction evidence
 
@@ -254,47 +255,50 @@ a publication-time check. The
 [filename-layout SVG](assets/original-file-layout.svg) contains filenames only;
 it is a reference diagram, not an application screenshot.
 
-The **[40-second MP4](assets/timbre-demo.mp4)** is an actual, continuous macOS
-Safari-window screen recording, captured with native `screencapture` while Computer
-Use entered messages into the running Customer view. It shows a genuine acoustic
-catalog search and best-PIX calculation, then a new chat with a real order-status
-call denied by the backend. It does not replay screenshots or scripted chatbot
-answers. Developer traces remain available in the screenshots and backend evidence;
-they are not overlaid on this Customer-view video.
+The **[main recording](assets/timbre-assessment-demo.mp4)** was supplied and selected
+by the project owner. It shows four actual English-language interactions with the
+original assessment store snapshot: available acoustic guitars under budget, store
+address, Takamine GD20 price/availability, and change-of-mind returns. No explicit
+answer-language instruction is added. All four displayed replies are in English;
+this validates the showcased session, not universal language consistency.
 
-The selected take executed **5 model calls and 3 tool calls**: two catalog/payment
-tools, then one unauthorized order lookup. Both turns completed normally; the private
-tool returned an authorization denial and no order record. The visible prices and
-stock were checked against the synthetic database. The poster is an extracted video
-frame. Actual provider/fallback metadata and sanitized turn measurements are preserved
-in the machine-readable results.
+The recorded session used **Standard/DeepSeek**, completing **4 turns, 9 model calls
+and 6 tool calls** without a failed turn. The corresponding metrics fall within the
+recording's capture interval. Catalog prices, availability, address, product
+specifications and return conditions were checked against the original SQLite and
+policy sources. Preference-exchange wording follows the documented receipt-based
+service decision. No refund or transaction is performed. Customer records, source
+PDFs, CSV files, credentials and private filesystem paths are not shown.
 
-Native capture ran at 60 fps. The delivered H.264 MP4 is **1920 × 952, 30 fps**, silent,
-with the browser toolbar cropped and the full recorded timeline retained at normal
-speed. Its approximately 0.7 MB size permits versioning alongside the README. The
-entire file was decoded successfully and sampled across its full duration for visual
-review. The recording excludes the desktop, other browser tabs, credentials and
-original customer data. A separate public video-hosting upload is optional; the
-README links directly to the versioned MP4.
+The video lasts **1 minute 52 seconds**. Its H.264 MP4 is **1920 × 1200, 30 fps**;
+the original audio is preserved. Encoding changes resolution/frame rate for sharing
+while retaining the full content, timing and playback speed. There are no temporal
+cuts, rewritten answers, overlays or fabricated traces. The supplied MOV remains
+unchanged, verified by SHA-256. The poster is an extracted frame from this recording.
+The complete MP4 decoded successfully; frames across its full duration were visually
+reviewed. The README links directly to the versioned MP4.
 
-Several preliminary captures were rejected for framing because the Developer view
-scrolled to its nested trace panel. They remain local and their actual inference
-usage is counted: **19 additional model calls across 7 turns**, costing
-**US$0.00829935**. The selected take is a Customer-view capture with readable answers.
-Including capture preparation, cumulative Phase 4 usage is **214 calls** and
-**US$0.115690**, still below the approved 250-call cap. The earlier 195-call comparison
-and validation totals above remain a distinct historical batch; these additional
-calls are demonstration evidence, not a new controlled model comparison.
+This recording replaces the earlier synthetic demonstration. The earlier MP4 and
+poster have been removed from the current repository tree. The four synthetic
+screenshots and five synthetic text examples remain secondary evidence for the
+public fixture workflow. The original assessment source files and extracted policy
+catalog remain excluded from Git.
 
-The first delivery contained screenshots and a storyboard only. Native window
-recording was subsequently verified and used to replace that incomplete media status.
+The machine-readable record preserves separate evidence batches. The original
+validation used **195 model calls**; earlier media preparation added **19**. One
+subsequent interrupted recording attempt completed a single **2-call** turn; the
+owner-recorded four-question session used **9**. Total observed Phase 4 usage is
+**225 calls**, with **US$0.121255** reported cost and complete cost coverage, below
+the approved 250-call cap. Media interactions are not pooled into the original
+controlled model-comparison scores.
 
 ## Review readiness
 
 The application and both loading workflows are verified for technical review. Final
 supporting documentation is limited to this file and `architecture.md`, plus README,
 examples and evidence assets. Old phase/ADR documents are consolidated; their prior
-versions remain in Git history. Independent human answer review and final
-deadline/submission decisions remain outstanding; the actual video is now included.
-The published delivery
-revision can be confirmed from the repository history. Known language and paraphrase variability are disclosed, not scored away.
+versions remain in Git history. The owner-selected recording and showcased answers
+have been reviewed; comprehensive independent qualitative grading is not claimed.
+Final deadline/submission decisions remain with the owner. The published delivery
+revision can be confirmed from the repository history. Known language and paraphrase
+variability remain disclosed.
