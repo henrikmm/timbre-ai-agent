@@ -64,8 +64,12 @@ an inference key, the public tool smoke test still exercises the backend.
 | ![Actual promotion and calculation calls with measured durations](docs/assets/developer-tools.jpg) | ![Actual order-status call denied by backend authorization](docs/assets/privacy-boundary.jpg) |
 | Promotions and exact payment calculations use the shared backend. | An unauthenticated session receives no private order row. |
 
-A [45–60 second recording storyboard](docs/evaluation.md#demonstration-assets-and-recording-alternative)
-is prepared. Screen recording/upload remain outstanding; no video is claimed.
+[![Watch the 40-second live demonstration](docs/assets/timbre-demo-poster.jpg)](docs/assets/timbre-demo.mp4)
+
+**[Watch the live demonstration (MP4)](docs/assets/timbre-demo.mp4)** · 40 seconds ·
+actual typed prompts, streamed answers, catalog/payment tools and a backend-denied
+order lookup. Synthetic data, real inference; no canned answers.
+[Recording details](docs/evaluation.md#demonstration-assets-and-live-video).
 
 ## How it works
 

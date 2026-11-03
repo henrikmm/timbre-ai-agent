@@ -141,8 +141,8 @@ changing prompts and incomplete qualitative grading prevent a general “best mo
 claim. P95 is descriptive, not an SLA. End-to-end includes tool execution and metadata;
 source/retrieval time is not inference latency. Missing measurements are not zero.
 
-Across all Phase 4 pilot, original, regression, synthetic/UI and clean-clone live
-checks: **195 model calls**, **US$0.107390** reported cost, with cost coverage for
+Before native video capture, the original Phase 4 pilot, comparison, regression,
+synthetic/UI and clean-clone validation batch used **195 model calls**, **US$0.107390** reported cost, with cost coverage for
 all **195 calls**, below the explicitly authorized **250-call** cap. These categories
 remain separate in the machine-readable record; synthetic **data** runs still use
 real inference and must not be confused with synthetic performance fixtures.
@@ -242,7 +242,7 @@ an exposure review, not legal certification or a guarantee about external caches
 previously shared untracked files or unreachable/deleted remote objects. No history
 rewriting, force-push, submission or external message was performed.
 
-## Demonstration assets and recording alternative
+## Demonstration assets and live video
 
 Four real browser captures are included: [discovery](assets/product-discovery.jpg),
 [developer tools](assets/developer-tools.jpg), [returns](assets/return-policy.jpg) and
@@ -254,37 +254,47 @@ a publication-time check. The
 [filename-layout SVG](assets/original-file-layout.svg) contains filenames only;
 it is a reference diagram, not an application screenshot.
 
-Supported browser/computer tools exposed screenshots but no screen-recording API.
-**No video was recorded or uploaded.** Use this prepared 45–60 second alternative:
+The **[40-second MP4](assets/timbre-demo.mp4)** is an actual, continuous macOS
+Safari-window screen recording, captured with native `screencapture` while Computer
+Use entered messages into the running Customer view. It shows a genuine acoustic
+catalog search and best-PIX calculation, then a new chat with a real order-status
+call denied by the backend. It does not replay screenshots or scripted chatbot
+answers. Developer traces remain available in the screenshots and backend evidence;
+they are not overlaid on this Customer-view video.
 
-| Time | Actual interaction / capture |
-|---|---|
-| 0–5 s | Open the synthetic Customer app; show Timbre and the dataset label |
-| 5–18 s | Submit: `Answer in English. Which acoustic guitars are available for under R$1,000?` |
-| 18–35 s | In the separately launched Developer app, submit: `Answer in English. What is the best PIX price for Demo Cedar Acoustic? Can I stack discounts?` Show real calls and the answer |
-| 35–45 s | Scroll to per-turn metrics; keep missing-value/coverage labels visible |
-| 45–60 s | New chat: `Answer in English. Please use the order-status tool to check my order 5001.` Show the real denial |
+The selected take executed **5 model calls and 3 tool calls**: two catalog/payment
+tools, then one unauthorized order lookup. Both turns completed normally; the private
+tool returned an authorization denial and no order record. The visible prices and
+stock were checked against the synthetic database. The poster is an extracted video
+frame. Actual provider/fallback metadata and sanitized turn measurements are preserved
+in the machine-readable results.
 
-Launch commands are in the README. On macOS, use **Shift–Command–5**, select only
-the application region, disable microphone if narration is unnecessary and record
-the real interaction. Do not crop away failures or replace answers. Keep notifications,
-keys, original customer data and private paths outside the capture. Save the raw
-recording under ignored `local/demo/timbre-demo.mov`; review the entire recording.
-If FFmpeg is available, convert without adding a new media stack:
+Native capture ran at 60 fps. The delivered H.264 MP4 is **1920 × 952, 30 fps**, silent,
+with the browser toolbar cropped and the full recorded timeline retained at normal
+speed. Its approximately 0.7 MB size permits versioning alongside the README. The
+entire file was decoded successfully and sampled across its full duration for visual
+review. The recording excludes the desktop, other browser tabs, credentials and
+original customer data. A separate public video-hosting upload is optional; the
+README links directly to the versioned MP4.
 
-```bash
-ffmpeg -i local/demo/timbre-demo.mov -c:v libx264 -pix_fmt yuv420p -movflags +faststart -an local/demo/timbre-demo.mp4
-```
+Several preliminary captures were rejected for framing because the Developer view
+scrolled to its nested trace panel. They remain local and their actual inference
+usage is counted: **19 additional model calls across 7 turns**, costing
+**US$0.00829935**. The selected take is a Customer-view capture with readable answers.
+Including capture preparation, cumulative Phase 4 usage is **214 calls** and
+**US$0.115690**, still below the approved 250-call cap. The earlier 195-call comparison
+and validation totals above remain a distinct historical batch; these additional
+calls are demonstration evidence, not a new controlled model comparison.
 
-Review the MP4 and upload it only after repository/media review, then link its
-real public URL from a thumbnail in the README. Upload/publishing and final
-assessment submission remain the owner's steps; no placeholder video URL is presented.
+The first delivery contained screenshots and a storyboard only. Native window
+recording was subsequently verified and used to replace that incomplete media status.
 
 ## Review readiness
 
 The application and both loading workflows are verified for technical review. Final
 supporting documentation is limited to this file and `architecture.md`, plus README,
 examples and evidence assets. Old phase/ADR documents are consolidated; their prior
-versions remain in Git history. Independent human answer review, recording/upload
-and final deadline/submission decisions remain outstanding. The published delivery
+versions remain in Git history. Independent human answer review and final
+deadline/submission decisions remain outstanding; the actual video is now included.
+The published delivery
 revision can be confirmed from the repository history. Known language and paraphrase variability are disclosed, not scored away.
